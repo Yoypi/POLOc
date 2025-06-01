@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Susano 1 Mois - Samourai Shop</title>
+    <title>Red Engine 1 Mois - Samourai Shop</title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
@@ -23,8 +23,8 @@
             background-color: rgba(20, 25, 40, 0.8);
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 0 30px rgba(78, 84, 200, 0.5);
-            border: 1px solid #4e54c8;
+            box-shadow: 0 0 30px rgba(155, 89, 182, 0.5);
+            border: 1px solid #9b59b6;
             max-width: 500px;
             width: 90%;
             position: relative;
@@ -38,7 +38,7 @@
             left: -100%;
             width: 300%;
             height: 300%;
-            background: linear-gradient(45deg, transparent, rgba(78, 84, 200, 0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(155, 89, 182, 0.1), transparent);
             transform: rotate(45deg);
             animation: shine-effect 8s linear infinite;
         }
@@ -66,7 +66,7 @@
             width: 60px;
             height: 60px;
             border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid #4e54c8;
+            border-top: 5px solid #9b59b6;
             border-radius: 50%;
             margin: 0 auto 20px;
             animation: spin 1.5s linear infinite;
@@ -94,7 +94,7 @@
         }
         
         .product-price {
-            color: #4e54c8;
+            color: #9b59b6;
             font-weight: bold;
             font-size: 1.3rem;
         }
@@ -109,7 +109,7 @@
         }
         
         .back-link:hover {
-            color: #4e54c8;
+            color: #9b59b6;
         }
         
         .cyber-particles {
@@ -126,7 +126,7 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background-color: rgba(78, 84, 200, 0.6);
+            background-color: rgba(155, 89, 182, 0.6);
             border-radius: 50%;
             animation: float 15s linear infinite;
         }
@@ -184,33 +184,6 @@
             }
         }
 
-        .premium-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #4e54c8, #3d418b);
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            box-shadow: 0 0 20px rgba(78, 84, 200, 0.6);
-            transform: rotate(5deg);
-            animation: badge-pulse 2s infinite;
-        }
-        
-        @keyframes badge-pulse {
-            0% {
-                box-shadow: 0 0 20px rgba(78, 84, 200, 0.6);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(78, 84, 200, 0.8);
-            }
-            100% {
-                box-shadow: 0 0 20px rgba(78, 84, 200, 0.6);
-            }
-        }
-
         .alternatives {
             margin-top: 10px;
             margin-bottom: 20px;
@@ -219,9 +192,9 @@
         .alt-btn {
             display: inline-block;
             padding: 10px 20px;
-            background: rgba(78, 84, 200, 0.2);
-            color: #4e54c8;
-            border: 1px solid #4e54c8;
+            background: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+            border: 1px solid #9b59b6;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
@@ -229,9 +202,9 @@
         }
 
         .alt-btn:hover {
-            background: rgba(78, 84, 200, 0.3);
+            background: rgba(155, 89, 182, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
         }
     </style>
     <script>
@@ -241,7 +214,7 @@
             
             // Rediriger vers Stripe après un court délai
             setTimeout(function() {
-                window.location.href = 'https://buy.stripe.com/test_dR62s69dA5TI5gY7ss';
+                window.location.href = 'https://buy.stripe.com/test_6oE5ALatg9KAdHw14c';
             }, 2000);
         });
         
@@ -279,21 +252,20 @@
     <div class="cyber-particles"></div>
     
     <div class="loading-container">
-        <div class="premium-badge">PREMIUM</div>
-        <h1 class="glitch-text">Susano 1 Mois</h1>
+        <h1 class="glitch-text">Red Engine 1 Mois</h1>
         <p>Préparation de votre commande en cours...</p>
         
         <div class="loading-spinner"></div>
         
         <div class="product-info pulse-effect">
-            <span class="product-name">Susano - 1 Mois</span>
-            <span class="product-price">80€</span>
+            <span class="product-name">Red Engine - 1 Mois</span>
+            <span class="product-price">24€</span>
         </div>
         
         <p>Vous allez être redirigé vers la page de paiement sécurisée Stripe</p>
         
         <div class="alternatives">
-            <a href="susanolifetime.html" class="alt-btn">Version Lifetime <i class="fas fa-infinity"></i></a>
+            <a href="redenginelifetime.html" class="alt-btn">Version Lifetime <i class="fas fa-infinity"></i></a>
         </div>
         
         <a href="index.html" class="back-link">Annuler et retourner à l'accueil</a>

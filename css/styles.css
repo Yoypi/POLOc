@@ -4281,6 +4281,101 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 10px 25px rgba(46, 204, 113, 0.7);
 }
 
+/* Styles pour les boutons spéciaux par produit - versions claires */
+.special-btn-green-light {
+    background: linear-gradient(135deg, #29d98a, #25c67d);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-green-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
+}
+
+.special-btn-purple-light {
+    background: linear-gradient(135deg, #a66abe, #9b59b6);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-purple-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.5);
+}
+
+.special-btn-yellow-light {
+    background: linear-gradient(135deg, #f3d32c, #f1c40f);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-yellow-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.5);
+}
+
+.special-btn-blue-light {
+    background: linear-gradient(135deg, #5a60d6, #4e54c8);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(78, 84, 200, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-blue-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(78, 84, 200, 0.5);
+}
+
+/* Effet brillant commun pour tous les boutons spéciaux */
+.special-btn-green-light::before,
+.special-btn-purple-light::before,
+.special-btn-yellow-light::before,
+.special-btn-blue-light::before,
+.special-btn-purple::before,
+.special-btn-yellow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    z-index: 1;
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.special-btn-green-light:hover::before,
+.special-btn-purple-light:hover::before,
+.special-btn-yellow-light:hover::before,
+.special-btn-blue-light:hover::before,
+.special-btn-purple:hover::before,
+.special-btn-yellow:hover::before {
+    left: 100%;
+    opacity: 1;
+}
+
 /* Styles pour les boutons spéciaux par produit */
 .special-btn-purple {
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
@@ -4302,4 +4397,99 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
     position: relative;
     overflow: hidden;
+}
+
+/* Styles pour les boutons spéciaux par produit - versions claires */
+.special-btn-green-light {
+    background: linear-gradient(135deg, #29d98a, #25c67d);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-green-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
+}
+
+.special-btn-purple-light {
+    background: linear-gradient(135deg, #a66abe, #9b59b6);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-purple-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.5);
+}
+
+.special-btn-yellow-light {
+    background: linear-gradient(135deg, #f3d32c, #f1c40f);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-yellow-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.5);
+}
+
+.special-btn-blue-light {
+    background: linear-gradient(135deg, #5a60d6, #4e54c8);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(78, 84, 200, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn-blue-light:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(78, 84, 200, 0.5);
+}
+
+/* Effet brillant commun pour tous les boutons spéciaux */
+.special-btn-green-light::before,
+.special-btn-purple-light::before,
+.special-btn-yellow-light::before,
+.special-btn-blue-light::before,
+.special-btn-purple::before,
+.special-btn-yellow::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    z-index: 1;
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.special-btn-green-light:hover::before,
+.special-btn-purple-light:hover::before,
+.special-btn-yellow-light:hover::before,
+.special-btn-blue-light:hover::before,
+.special-btn-purple:hover::before,
+.special-btn-yellow:hover::before {
+    left: 100%;
+    opacity: 1;
 }

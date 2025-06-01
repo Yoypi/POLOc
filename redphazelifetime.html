@@ -141,6 +141,98 @@
                 opacity: 0;
             }
         }
+
+        .glitch-text {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .pulse-effect {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .ultimate-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+            transform: rotate(5deg);
+            animation: badge-pulse 2s infinite;
+        }
+        
+        @keyframes badge-pulse {
+            0% {
+                box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(241, 196, 15, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+            }
+        }
+
+        .alternatives {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alt-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+            border: 1px solid #f1c40f;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .alt-btn:hover {
+            background: rgba(241, 196, 15, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+        }
     </style>
     <script>
         window.addEventListener('DOMContentLoaded', function() {
@@ -187,17 +279,22 @@
     <div class="cyber-particles"></div>
     
     <div class="loading-container">
-        <h1>Red+Phaze Lifetime</h1>
+        <div class="ultimate-badge">ULTIMATE</div>
+        <h1 class="glitch-text">Red+Phaze Lifetime</h1>
         <p>Préparation de votre commande en cours...</p>
         
         <div class="loading-spinner"></div>
         
-        <div class="product-info">
+        <div class="product-info pulse-effect">
             <span class="product-name">Red+Phaze - Lifetime</span>
-            <span class="product-price">70€</span>
+            <span class="product-price">101€</span>
         </div>
         
         <p>Vous allez être redirigé vers la page de paiement sécurisée Stripe</p>
+        
+        <div class="alternatives">
+            <a href="redphaze1month.html" class="alt-btn">Version 1 Mois <i class="fas fa-calendar-alt"></i></a>
+        </div>
         
         <a href="index.html" class="back-link">Annuler et retourner à l'accueil</a>
     </div>
