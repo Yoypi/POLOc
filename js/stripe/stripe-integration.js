@@ -29,18 +29,13 @@ class StripePayment {
       // Initialiser l'instance Stripe
       this.stripe = Stripe(stripeConfig.publicKey);
       
-      // Initialiser les éléments Stripe
-      this.elements = this.stripe.elements({
-        locale: stripeConfig.locale
-      });
-      
-      // Créer l'élément de carte
+      // Créer l'élément d'information
       this.setupCardElement();
       
       // Ajouter les écouteurs d'événements
       this.setupEventListeners();
       
-      console.log('Stripe initialisé avec succès');
+      console.log('Stripe Checkout initialisé avec succès');
     } catch (error) {
       console.error('Erreur lors de l\'initialisation de Stripe:', error);
     }
@@ -48,64 +43,35 @@ class StripePayment {
 
   // Configurer l'élément de carte
   setupCardElement() {
+    // Pour Stripe Checkout, nous n'avons pas besoin d'éléments de carte
+    // Mais nous configurons quand même le conteneur d'erreurs
+    
     // Trouver le conteneur de carte
     const cardElementContainer = document.getElementById('card-element-container');
     if (!cardElementContainer) {
       console.error('Le conteneur de carte est introuvable');
       return;
     }
-
-    // Créer le conteneur pour l'élément de carte s'il n'existe pas
-    if (!document.getElementById('card-element')) {
-      const cardElement = document.createElement('div');
-      cardElement.id = 'card-element';
-      cardElement.classList.add('stripe-card-element');
-      cardElementContainer.appendChild(cardElement);
-    }
-
-    // Créer le conteneur pour les erreurs s'il n'existe pas
-    if (!document.getElementById('card-errors')) {
-      this.errorElement = document.createElement('div');
-      this.errorElement.id = 'card-errors';
-      this.errorElement.classList.add('stripe-error');
-      cardElementContainer.appendChild(this.errorElement);
-    } else {
-      this.errorElement = document.getElementById('card-errors');
-    }
-
-    // Style pour l'élément de carte
-    const cardStyle = {
-      base: {
-        color: '#ffffff',
-        fontFamily: 'Poppins, sans-serif',
-        fontSize: '16px',
-        '::placeholder': {
-          color: 'rgba(255, 255, 255, 0.6)',
-        },
-      },
-      invalid: {
-        color: '#ff0000',
-        iconColor: '#ff0000',
-      },
-    };
-
-    // Créer l'élément de carte
-    this.card = this.elements.create('card', {
-      style: cardStyle,
-      hidePostalCode: false
-    });
-
-    // Monter l'élément de carte
-    this.card.mount('#card-element');
-
-    // Écouter les changements pour afficher les erreurs
-    this.card.on('change', (event) => {
-      if (event.error) {
-        this.showError(event.error.message);
-      } else {
-        this.clearError();
-      }
-    });
+    
+    // Vider le conteneur existant
+    cardElementContainer.innerHTML = '';
+    
+    // Ajouter une explication sur Stripe Checkout
+    const infoElement = document.createElement('div');
+    infoElement.classList.add('stripe-checkout-info');
+    infoElement.innerHTML = `
+      <div class="stripe-logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" class="stripe-logo">
+      </div>
+      <p>Votre paiement sera traité de manière sécurisée par Stripe. Vous serez redirigé vers la page de paiement Stripe après avoir cliqué sur le bouton.</p>
+    `;
+    cardElementContainer.appendChild(infoElement);
+    
+    // Créer le conteneur pour les erreurs
+    this.errorElement = document.createElement('div');
+    this.errorElement.id = 'card-errors';
+    this.errorElement.classList.add('stripe-error');
+    cardElementContainer.appendChild(this.errorElement);
   }
 
   // Configurer les écouteurs d'événements
@@ -144,35 +110,39 @@ class StripePayment {
       
       // Récupérer le produit et le prix
       const productName = document.getElementById('productName').textContent;
+      const productDescription = document.getElementById('productDescription').textContent;
       const productPrice = document.getElementById('total').textContent.replace('€', '').trim();
+      const priceInCents = Math.round(parseFloat(productPrice) * 100); // Convertir en centimes
       
-      // Créer un token de paiement
-      const { token, error } = await this.stripe.createToken(this.card, {
-        name: customerName
+      // Créer une session de paiement Stripe
+      const { error } = await this.stripe.redirectToCheckout({
+        lineItems: [
+          {
+            price_data: {
+              currency: stripeConfig.currency,
+              product_data: {
+                name: productName,
+                description: productDescription
+              },
+              unit_amount: priceInCents
+            },
+            quantity: 1
+          }
+        ],
+        mode: 'payment',
+        successUrl: stripeConfig.successUrl,
+        cancelUrl: stripeConfig.cancelUrl,
+        customerEmail: customerEmail
       });
       
       if (error) {
+        console.error('Erreur Stripe:', error);
         this.showError(error.message);
         this.stopLoading();
-        return;
       }
-      
-      // Simuler l'envoi au serveur (à remplacer par un vrai appel API)
-      console.log('Token de paiement créé:', token.id);
-      console.log('Données de commande:', {
-        product: productName,
-        price: productPrice,
-        email: customerEmail,
-        name: customerName
-      });
-      
-      // Rediriger vers la page de confirmation
-      this.simulateSuccessfulPayment();
-      
     } catch (error) {
       console.error('Erreur lors du paiement:', error);
-      this.showError('Une erreur est survenue lors du traitement du paiement.');
-    } finally {
+      this.showError('Une erreur est survenue lors de la redirection vers Stripe.');
       this.stopLoading();
     }
   }
