@@ -164,109 +164,39 @@
                 <div class="payment-methods cyber-card" data-aos="fade-left" data-aos-delay="100">
                     <div class="card-glitch-effect"></div>
                     <div class="payment-header">
-                        <h3><i class="fas fa-lock"></i> Méthode de paiement <span class="secure-tag">SÉCURISÉ</span></h3>
+                        <h3><i class="fas fa-lock"></i> Paiement sécurisé Stripe <span class="secure-tag">SÉCURISÉ</span></h3>
                     </div>
-                    <div class="payment-tabs">
-                        <div class="tab-headers">
-                            <div class="tab-header active" data-tab="creditCard">
-                                <i class="fas fa-credit-card"></i>
-                                <span>Carte bancaire</span>
-                            </div>
-                            <div class="tab-header" data-tab="crypto">
-                                <i class="fab fa-bitcoin"></i>
-                                <span>Crypto</span>
-                            </div>
-                            <div class="tab-header" data-tab="paypal">
-                                <i class="fab fa-paypal"></i>
-                                <span>PayPal</span>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-content">
-                            <div id="creditCard" class="tab-pane active">
-                                <form id="payment-form" class="payment-form">
-                                    <!-- Conteneur pour l'élément de carte Stripe -->
-                                    <div id="card-element-container" class="form-group cyber-input stripe-container">
-                                        <label>Informations de carte</label>
-                                        <div id="card-element" class="stripe-card-element"></div>
-                                        <div id="card-errors" class="stripe-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group cyber-input">
-                                        <label>Nom sur la carte</label>
-                                        <input type="text" id="customer-name" placeholder="John Doe" class="neon-input" required>
-                                        <div class="input-line"></div>
-                                    </div>
-                                    <div class="form-group cyber-input">
-                                        <label>Email</label>
-                                        <input type="email" id="customer-email" placeholder="email@example.com" class="neon-input" required>
-                                        <div class="input-line"></div>
-                                    </div>
-                                    <button type="submit" class="btn payment-btn cyberpunk-btn glow-btn">
-                                        <span class="btn-content">Payer avec Stripe <i class="fas fa-credit-card"></i></span>
-                                        <span class="btn-glitch"></span>
-                                        <span class="btn-label">REDIRECTION SÉCURISÉE</span>
-                                    </button>
-                                    <p class="stripe-info">Vous serez redirigé vers la page de paiement sécurisée Stripe</p>
-                                </form>
+                    <div class="payment-content">
+                        <form id="payment-form" class="payment-form">
+                            <!-- Conteneur pour l'élément de carte Stripe -->
+                            <div id="card-element-container" class="form-group cyber-input stripe-container">
+                                <label>Informations de carte</label>
+                                <div id="card-element" class="stripe-card-element"></div>
+                                <div id="card-errors" class="stripe-error"></div>
                             </div>
                             
-                            <div id="crypto" class="tab-pane">
-                                <div class="crypto-payment">
-                                    <div class="qr-code">
-                                        <img src="img/qr-code.png" alt="QR Code">
-                                        <div class="qr-scanning-effect"></div>
-                                    </div>
-                                    <p>Envoyez exactement <strong id="cryptoAmount" class="crypto-amount">0.0058 BTC</strong> à cette adresse :</p>
-                                    <div class="crypto-address">
-                                        <code id="cryptoAddress">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
-                                        <button id="copyAddress" class="copy-btn"><i class="fas fa-copy"></i></button>
-                                    </div>
-                                    <div class="crypto-time">
-                                        <div class="timer-icon"><i class="fas fa-clock"></i></div>
-                                        <div class="timer-text">
-                                            <span>Temps restant:</span>
-                                            <div class="countdown-timer">15:00</div>
-                                        </div>
-                                    </div>
-                                    <p class="crypto-note">Une fois le paiement effectué, vous recevrez votre produit à l'adresse email fournie ci-dessous.</p>
-                                    <div class="form-group cyber-input">
-                                        <label>Votre email</label>
-                                        <input type="email" placeholder="email@example.com" required class="neon-input">
-                                        <div class="input-line"></div>
-                                    </div>
-                                    <button class="btn payment-btn cyberpunk-btn glow-btn">
-                                        <span class="btn-content">Confirmer le paiement <i class="fas fa-check-circle"></i></span>
-                                        <span class="btn-glitch"></span>
-                                        <span class="btn-label">VÉRIFICATION EN COURS</span>
-                                    </button>
-                                </div>
+                            <div class="form-group cyber-input">
+                                <label>Nom sur la carte</label>
+                                <input type="text" id="customer-name" placeholder="John Doe" class="neon-input" required>
+                                <div class="input-line"></div>
                             </div>
+                            <div class="form-group cyber-input">
+                                <label>Email</label>
+                                <input type="email" id="customer-email" placeholder="email@example.com" class="neon-input" required>
+                                <div class="input-line"></div>
+                            </div>
+                            <button type="submit" class="btn payment-btn cyberpunk-btn glow-btn">
+                                <span class="btn-content">Payer avec Stripe <i class="fas fa-credit-card"></i></span>
+                                <span class="btn-glitch"></span>
+                                <span class="btn-label">REDIRECTION SÉCURISÉE</span>
+                            </button>
+                            <p class="stripe-info">Vous serez redirigé vers la page de paiement sécurisée Stripe</p>
                             
-                            <div id="paypal" class="tab-pane">
-                                <div class="paypal-payment">
-                                    <div class="payment-security-badge">
-                                        <i class="fas fa-shield-alt"></i>
-                                        <span>Paiement sécurisé</span>
-                                        <div class="security-pulse"></div>
-                                    </div>
-                                    <p>Vous allez être redirigé vers PayPal pour finaliser votre paiement en toute sécurité.</p>
-                                    <div class="paypal-logo cyber-logo">
-                                        <i class="fab fa-paypal"></i>
-                                        <div class="logo-glow"></div>
-                                    </div>
-                                    <button class="btn payment-btn cyberpunk-btn glow-btn">
-                                        <span class="btn-content">Payer avec PayPal <i class="fas fa-external-link-alt"></i></span>
-                                        <span class="btn-glitch"></span>
-                                        <span class="btn-label">REDIRECTION SÉCURISÉE</span>
-                                    </button>
-                                    <div class="payment-guarantee">
-                                        <i class="fas fa-undo"></i>
-                                        <span>Garantie satisfait ou remboursé pendant 24h</span>
-                                    </div>
-                                </div>
+                            <div class="stripe-badge">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" alt="Stripe" class="stripe-logo">
+                                <p>Paiement 100% sécurisé par Stripe - Leader mondial du paiement en ligne</p>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

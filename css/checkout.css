@@ -1202,4 +1202,28 @@ button.loading {
     color: #aaa;
     font-size: 0.9rem;
     line-height: 1.4;
+}
+
+.stripe-badge {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.stripe-logo {
+    max-width: 120px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.stripe-badge:hover .stripe-logo {
+    opacity: 1;
+}
+
+.stripe-badge p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin: 0;
 } 
