@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         '1week': { keyser: 11, redengine: 14, redphaze: 25, susano: 45 },
         '1month': { keyser: 16, redengine: 24, redphaze: 40, susano: 80 },
         '3months': { keyser: 31, redengine: 45, redphaze: 70, susano: 140 },
-        'lifetime': { keyser: 31, redengine: 45, redphaze: 70, susano: 140 }
+        'lifetime': { keyser: 31, redengine: 45, redphaze: 70, susano: 61 }
     };
     
     // Déterminer le produit à partir de l'URL
