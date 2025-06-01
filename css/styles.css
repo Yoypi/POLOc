@@ -4206,7 +4206,18 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
-.special-btn::before {
+.special-btn-blue {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(78, 84, 200, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn::before, .special-btn-blue::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -4220,7 +4231,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
 }
 
-.special-btn:hover::before {
+.special-btn:hover::before, .special-btn-blue:hover::before {
     left: 100%;
     opacity: 1;
 }
@@ -4228,4 +4239,9 @@ h1, h2, h3, h4, h5, h6 {
 .special-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(255, 78, 80, 0.7);
+}
+
+.special-btn-blue:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(78, 84, 200, 0.7);
 }
