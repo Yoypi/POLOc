@@ -4195,301 +4195,309 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
 }
 
-.special-btn {
-    background: linear-gradient(135deg, #ff4e50, #f9d423);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(255, 78, 80, 0.5);
+.special-btn, 
+.special-btn-green,
+.special-btn-purple,
+.special-btn-yellow,
+.special-btn-blue,
+.special-btn-green-light,
+.special-btn-purple-light,
+.special-btn-yellow-light,
+.special-btn-blue-light {
     position: relative;
     overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-origin: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+}
+
+.special-btn:hover, 
+.special-btn-green:hover,
+.special-btn-purple:hover,
+.special-btn-yellow:hover,
+.special-btn-blue:hover,
+.special-btn-green-light:hover,
+.special-btn-purple-light:hover,
+.special-btn-yellow-light:hover,
+.special-btn-blue-light:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+.special-btn:active, 
+.special-btn-green:active,
+.special-btn-purple:active,
+.special-btn-yellow:active,
+.special-btn-blue:active,
+.special-btn-green-light:active,
+.special-btn-purple-light:active,
+.special-btn-yellow-light:active,
+.special-btn-blue-light:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.1s;
+}
+
+.special-btn::before, 
+.special-btn-green::before,
+.special-btn-purple::before,
+.special-btn-yellow::before,
+.special-btn-blue::before,
+.special-btn-green-light::before,
+.special-btn-purple-light::before,
+.special-btn-yellow-light::before,
+.special-btn-blue-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: none;
+    z-index: -1;
+}
+
+.special-btn:hover::before, 
+.special-btn-green:hover::before,
+.special-btn-purple:hover::before,
+.special-btn-yellow:hover::before,
+.special-btn-blue:hover::before,
+.special-btn-green-light:hover::before,
+.special-btn-purple-light:hover::before,
+.special-btn-yellow-light:hover::before,
+.special-btn-blue-light:hover::before {
+    left: 100%;
+    transition: left 0.8s cubic-bezier(0.3, 1, 0.3, 1);
+}
+
+.special-btn i, 
+.special-btn-green i,
+.special-btn-purple i,
+.special-btn-yellow i,
+.special-btn-blue i,
+.special-btn-green-light i,
+.special-btn-purple-light i,
+.special-btn-yellow-light i,
+.special-btn-blue-light i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.special-btn:hover i, 
+.special-btn-green:hover i,
+.special-btn-purple:hover i,
+.special-btn-yellow:hover i,
+.special-btn-blue:hover i,
+.special-btn-green-light:hover i,
+.special-btn-purple-light:hover i,
+.special-btn-yellow-light:hover i,
+.special-btn-blue-light:hover i {
+    transform: translateX(5px);
+}
+
+/* Animation pour simuler une pulsation */
+@keyframes button-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Styles spécifiques pour chaque type de bouton */
+.special-btn {
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    box-shadow: 0 5px 15px rgba(255, 78, 80, 0.5);
+}
+
+.special-btn:hover {
+    box-shadow: 0 10px 25px rgba(255, 78, 80, 0.7);
 }
 
 .special-btn-blue {
     background: linear-gradient(135deg, #4e54c8, #8f94fb);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(78, 84, 200, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn::before, .special-btn-blue::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
-    transform: rotate(45deg);
-    z-index: 1;
-    transition: all 0.6s ease;
-    opacity: 0;
-}
-
-.special-btn:hover::before, .special-btn-blue:hover::before {
-    left: 100%;
-    opacity: 1;
-}
-
-.special-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 78, 80, 0.7);
+    box-shadow: 0 5px 15px rgba(78, 84, 200, 0.5);
 }
 
 .special-btn-blue:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(78, 84, 200, 0.7);
 }
 
 .special-btn-green {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn-green::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
-    transform: rotate(45deg);
-    z-index: 1;
-    transition: all 0.6s ease;
-    opacity: 0;
-}
-
-.special-btn-green:hover::before {
-    left: 100%;
-    opacity: 1;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.5);
 }
 
 .special-btn-green:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(46, 204, 113, 0.7);
 }
 
-/* Styles pour les boutons spéciaux par produit - versions claires */
-.special-btn-green-light {
-    background: linear-gradient(135deg, #29d98a, #25c67d);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn-green-light:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
-}
-
-.special-btn-purple-light {
-    background: linear-gradient(135deg, #a66abe, #9b59b6);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn-purple-light:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.5);
-}
-
-.special-btn-yellow-light {
-    background: linear-gradient(135deg, #f3d32c, #f1c40f);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn-yellow-light:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.5);
-}
-
-.special-btn-blue-light {
-    background: linear-gradient(135deg, #5a60d6, #4e54c8);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(78, 84, 200, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.special-btn-blue-light:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(78, 84, 200, 0.5);
-}
-
-/* Effet brillant commun pour tous les boutons spéciaux */
-.special-btn-green-light::before,
-.special-btn-purple-light::before,
-.special-btn-yellow-light::before,
-.special-btn-blue-light::before,
-.special-btn-purple::before,
-.special-btn-yellow::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
-    transform: rotate(45deg);
-    z-index: 1;
-    transition: all 0.6s ease;
-    opacity: 0;
-}
-
-.special-btn-green-light:hover::before,
-.special-btn-purple-light:hover::before,
-.special-btn-yellow-light:hover::before,
-.special-btn-blue-light:hover::before,
-.special-btn-purple:hover::before,
-.special-btn-yellow:hover::before {
-    left: 100%;
-    opacity: 1;
-}
-
-/* Styles pour les boutons spéciaux par produit */
 .special-btn-purple {
     background: linear-gradient(135deg, #9b59b6, #8e44ad);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(155, 89, 182, 0.5);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.5);
+}
+
+.special-btn-purple:hover {
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.7);
 }
 
 .special-btn-yellow {
     background: linear-gradient(135deg, #f1c40f, #f39c12);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.5);
 }
 
-/* Styles pour les boutons spéciaux par produit - versions claires */
+.special-btn-yellow:hover {
+    box-shadow: 0 10px 25px rgba(241, 196, 15, 0.7);
+}
+
 .special-btn-green-light {
     background: linear-gradient(135deg, #29d98a, #25c67d);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
 }
 
 .special-btn-green-light:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
 }
 
 .special-btn-purple-light {
     background: linear-gradient(135deg, #a66abe, #9b59b6);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
 }
 
 .special-btn-purple-light:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(155, 89, 182, 0.5);
 }
 
 .special-btn-yellow-light {
     background: linear-gradient(135deg, #f3d32c, #f1c40f);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
 }
 
 .special-btn-yellow-light:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(241, 196, 15, 0.5);
 }
 
 .special-btn-blue-light {
     background: linear-gradient(135deg, #5a60d6, #4e54c8);
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    box-shadow: 0 0 15px rgba(78, 84, 200, 0.3);
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
 }
 
 .special-btn-blue-light:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(78, 84, 200, 0.5);
 }
 
-/* Effet brillant commun pour tous les boutons spéciaux */
-.special-btn-green-light::before,
-.special-btn-purple-light::before,
-.special-btn-yellow-light::before,
-.special-btn-blue-light::before,
-.special-btn-purple::before,
-.special-btn-yellow::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
-    transform: rotate(45deg);
-    z-index: 1;
-    transition: all 0.6s ease;
-    opacity: 0;
+/* Ajout d'une animation neon-glow pour les boutons */
+@keyframes neon-glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(255, 255, 255, 0.1);
+    }
 }
 
-.special-btn-green-light:hover::before,
-.special-btn-purple-light:hover::before,
-.special-btn-yellow-light:hover::before,
-.special-btn-blue-light:hover::before,
-.special-btn-purple:hover::before,
-.special-btn-yellow:hover::before {
-    left: 100%;
-    opacity: 1;
+.special-btn, 
+.special-btn-green,
+.special-btn-purple,
+.special-btn-yellow,
+.special-btn-blue,
+.special-btn-green-light,
+.special-btn-purple-light,
+.special-btn-yellow-light,
+.special-btn-blue-light {
+    animation: neon-glow 2s infinite;
+}
+
+/* Animations neon-glow spécifiques pour chaque type de bouton */
+@keyframes neon-glow-red {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 78, 80, 0.3), 0 0 10px rgba(255, 78, 80, 0.2), 0 0 15px rgba(255, 78, 80, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 78, 80, 0.5), 0 0 20px rgba(255, 78, 80, 0.3), 0 0 30px rgba(255, 78, 80, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 78, 80, 0.3), 0 0 10px rgba(255, 78, 80, 0.2), 0 0 15px rgba(255, 78, 80, 0.1);
+    }
+}
+
+@keyframes neon-glow-blue {
+    0% {
+        box-shadow: 0 0 5px rgba(78, 84, 200, 0.3), 0 0 10px rgba(78, 84, 200, 0.2), 0 0 15px rgba(78, 84, 200, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(78, 84, 200, 0.5), 0 0 20px rgba(78, 84, 200, 0.3), 0 0 30px rgba(78, 84, 200, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(78, 84, 200, 0.3), 0 0 10px rgba(78, 84, 200, 0.2), 0 0 15px rgba(78, 84, 200, 0.1);
+    }
+}
+
+@keyframes neon-glow-green {
+    0% {
+        box-shadow: 0 0 5px rgba(46, 204, 113, 0.3), 0 0 10px rgba(46, 204, 113, 0.2), 0 0 15px rgba(46, 204, 113, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(46, 204, 113, 0.5), 0 0 20px rgba(46, 204, 113, 0.3), 0 0 30px rgba(46, 204, 113, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(46, 204, 113, 0.3), 0 0 10px rgba(46, 204, 113, 0.2), 0 0 15px rgba(46, 204, 113, 0.1);
+    }
+}
+
+@keyframes neon-glow-purple {
+    0% {
+        box-shadow: 0 0 5px rgba(155, 89, 182, 0.3), 0 0 10px rgba(155, 89, 182, 0.2), 0 0 15px rgba(155, 89, 182, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(155, 89, 182, 0.5), 0 0 20px rgba(155, 89, 182, 0.3), 0 0 30px rgba(155, 89, 182, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(155, 89, 182, 0.3), 0 0 10px rgba(155, 89, 182, 0.2), 0 0 15px rgba(155, 89, 182, 0.1);
+    }
+}
+
+@keyframes neon-glow-yellow {
+    0% {
+        box-shadow: 0 0 5px rgba(241, 196, 15, 0.3), 0 0 10px rgba(241, 196, 15, 0.2), 0 0 15px rgba(241, 196, 15, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(241, 196, 15, 0.5), 0 0 20px rgba(241, 196, 15, 0.3), 0 0 30px rgba(241, 196, 15, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(241, 196, 15, 0.3), 0 0 10px rgba(241, 196, 15, 0.2), 0 0 15px rgba(241, 196, 15, 0.1);
+    }
+}
+
+.special-btn {
+    animation: neon-glow-red 2s infinite;
+}
+
+.special-btn-blue, .special-btn-blue-light {
+    animation: neon-glow-blue 2s infinite;
+}
+
+.special-btn-green, .special-btn-green-light {
+    animation: neon-glow-green 2s infinite;
+}
+
+.special-btn-purple, .special-btn-purple-light {
+    animation: neon-glow-purple 2s infinite;
+}
+
+.special-btn-yellow, .special-btn-yellow-light {
+    animation: neon-glow-yellow 2s infinite;
 }
