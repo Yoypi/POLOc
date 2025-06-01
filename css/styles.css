@@ -4186,3 +4186,46 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.5rem;
     }
 }
+
+/* Styles pour les boutons produits */
+.product-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.special-btn {
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 15px rgba(255, 78, 80, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    z-index: 1;
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.special-btn:hover::before {
+    left: 100%;
+    opacity: 1;
+}
+
+.special-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 78, 80, 0.7);
+}

@@ -11,6 +11,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Script pour le lien direct Susano Lifetime -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('product') === 'susano-lifetime') {
+                // Redirection vers le lien Stripe pour Susano Lifetime
+                window.location.href = 'https://buy.stripe.com/test_8x26oH9085yk24I3LqdEs00';
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="noise-overlay"></div>
