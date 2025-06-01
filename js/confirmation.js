@@ -89,6 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Générer un numéro de commande aléatoire
     function generateOrderNumber() {
+        // Vérifier si un ID de commande existe dans le sessionStorage
+        const storedOrderId = sessionStorage.getItem('orderId');
+        if (storedOrderId) {
+            return storedOrderId;
+        }
+        
+        // Sinon, générer un nouveau numéro
         return Math.floor(1000 + Math.random() * 9000);
     }
     
@@ -96,6 +103,30 @@ document.addEventListener('DOMContentLoaded', function() {
     function getEmailFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get('email') || 'client@example.com';
+    }
+    
+    // Récupérer les informations du produit
+    function getProductInfo() {
+        // Essayer d'abord de récupérer depuis sessionStorage
+        const storedProduct = sessionStorage.getItem('orderProduct');
+        const storedPrice = sessionStorage.getItem('orderPrice');
+        
+        if (storedProduct && storedPrice) {
+            return {
+                name: storedProduct,
+                price: storedPrice
+            };
+        }
+        
+        // Sinon, récupérer depuis les paramètres URL (pour Stripe)
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product') || 'Keyser';
+        const productPrice = urlParams.get('price') || '11.00 €';
+        
+        return {
+            name: productName,
+            price: productPrice
+        };
     }
     
     // Animation des confettis
@@ -200,6 +231,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Définir l'email client
         document.getElementById('customerEmail').textContent = getEmailFromUrl();
         
+        // Définir les informations du produit
+        const productInfo = getProductInfo();
+        if (document.getElementById('productName')) {
+            document.getElementById('productName').textContent = productInfo.name;
+        }
+        if (document.getElementById('productPrice')) {
+            document.getElementById('productPrice').textContent = productInfo.price;
+        }
+        
+        // Vérifier si c'est un paiement Stripe réussi
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('payment_intent') || urlParams.get('redirect_status') === 'succeeded') {
+            // Afficher un message de succès spécifique à Stripe si nécessaire
+            console.log('Paiement Stripe réussi!');
+        }
+        
         // Configurer les animations
         setupConfetti();
         
@@ -208,6 +255,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Configurer les interactions
         setupActions();
+        
+        // Nettoyer sessionStorage après utilisation
+        setTimeout(() => {
+            sessionStorage.removeItem('orderId');
+            sessionStorage.removeItem('orderProduct');
+            sessionStorage.removeItem('orderPrice');
+            sessionStorage.removeItem('orderComplete');
+        }, 5000);
     }
     
     // Lancer l'initialisation
