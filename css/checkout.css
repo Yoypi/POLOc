@@ -1043,4 +1043,115 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
+}
+
+/* Styles spécifiques pour Stripe */
+.stripe-container {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(30, 30, 40, 0.8);
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stripe-container:hover {
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+#card-element {
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgba(40, 40, 50, 0.7);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-top: 5px;
+    min-height: 20px;
+}
+
+#card-element:hover {
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+#card-errors {
+    color: #ff3333;
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 4px;
+    display: none;
+}
+
+.stripe-card-element {
+    transition: all 0.3s ease;
+}
+
+button.loading {
+    opacity: 0.8;
+    cursor: wait;
+}
+
+/* Animation de paiement en cours */
+.payment-processing {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-processing-content {
+    background-color: rgba(30, 30, 40, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    border: 1px solid #ff0000;
+    max-width: 400px;
+    width: 90%;
+}
+
+.processing-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top: 5px solid #ff0000;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.payment-success-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 200, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    color: #00c800;
+    font-size: 2rem;
+    animation: scale-in 0.5s ease;
+}
+
+@keyframes scale-in {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 } 

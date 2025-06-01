@@ -168,37 +168,22 @@
                         
                         <div class="tab-content">
                             <div id="creditCard" class="tab-pane active">
-                                <form class="payment-form">
-                                    <div class="form-group cyber-input">
-                                        <label>Numéro de carte</label>
-                                        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" class="neon-input">
-                                        <div class="input-line"></div>
-                                        <div class="card-icons">
-                                            <i class="fab fa-cc-visa"></i>
-                                            <i class="fab fa-cc-mastercard"></i>
-                                            <i class="fab fa-cc-amex"></i>
-                                        </div>
+                                <form id="payment-form" class="payment-form">
+                                    <!-- Conteneur pour l'élément de carte Stripe -->
+                                    <div id="card-element-container" class="form-group cyber-input stripe-container">
+                                        <label>Informations de carte</label>
+                                        <div id="card-element" class="stripe-card-element"></div>
+                                        <div id="card-errors" class="stripe-error"></div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group cyber-input">
-                                            <label>Date d'expiration</label>
-                                            <input type="text" placeholder="MM/AA" class="neon-input">
-                                            <div class="input-line"></div>
-                                        </div>
-                                        <div class="form-group cyber-input">
-                                            <label>CVC</label>
-                                            <input type="text" placeholder="123" maxlength="3" class="neon-input">
-                                            <div class="input-line"></div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group cyber-input">
                                         <label>Nom sur la carte</label>
-                                        <input type="text" placeholder="John Doe" class="neon-input">
+                                        <input type="text" id="customer-name" placeholder="John Doe" class="neon-input" required>
                                         <div class="input-line"></div>
                                     </div>
                                     <div class="form-group cyber-input">
                                         <label>Email</label>
-                                        <input type="email" placeholder="email@example.com" class="neon-input">
+                                        <input type="email" id="customer-email" placeholder="email@example.com" class="neon-input" required>
                                         <div class="input-line"></div>
                                     </div>
                                     <button type="submit" class="btn payment-btn cyberpunk-btn glow-btn">
@@ -372,107 +357,6 @@
             once: true,
             disable: 'mobile'
         });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Force le curseur à disparaître
-        document.documentElement.style.cursor = 'none';
-        document.body.style.cursor = 'none';
-        
-        // Récupérer le curseur
-        const cursor = document.getElementById('simple-cursor');
-        
-        // Fonction ultra-simple pour suivre le curseur
-        function moveCursor(e) {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        }
-        
-        // Ajout de plusieurs écouteurs
-        document.addEventListener('mousemove', moveCursor);
-        document.addEventListener('mouseenter', moveCursor);
-        document.addEventListener('mouseover', moveCursor);
-        
-        // S'assurer qu'il est toujours visible
-        setInterval(() => {
-            document.documentElement.style.cursor = 'none';
-            document.body.style.cursor = 'none';
-            cursor.style.display = 'block';
-            cursor.style.opacity = '1';
-        }, 500);
-        
-        // Rendre le curseur visible au clic
-        document.addEventListener('click', function(e) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursor.style.backgroundColor = 'orange';
-            
-            setTimeout(() => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.backgroundColor = 'red';
-            }, 200);
-        });
-        
-        // Gestion des onglets de paiement
-        const tabHeaders = document.querySelectorAll('.tab-header');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        
-        tabHeaders.forEach(header => {
-            header.addEventListener('click', function() {
-                // Retirer la classe active de tous les onglets
-                tabHeaders.forEach(h => h.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
-                
-                // Ajouter la classe active à l'onglet cliqué
-                this.classList.add('active');
-                
-                // Afficher le contenu correspondant
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Animation du compte à rebours pour crypto
-        let timeLeft = 900; // 15 minutes en secondes
-        const timerDisplay = document.querySelector('.countdown-timer');
-        
-        if (timerDisplay) {
-            const updateTimer = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(updateTimer);
-                    timerDisplay.textContent = "00:00";
-                    timerDisplay.classList.add('expired');
-                } else {
-                    timeLeft--;
-                }
-            }, 1000);
-        }
-        
-        // Effet de copie pour l'adresse crypto
-        const copyBtn = document.getElementById('copyAddress');
-        const cryptoAddress = document.getElementById('cryptoAddress');
-        
-        if (copyBtn && cryptoAddress) {
-            copyBtn.addEventListener('click', function() {
-                const tempInput = document.createElement('input');
-                tempInput.value = cryptoAddress.textContent;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                
-                // Animation de confirmation
-                this.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-copy"></i>';
-                }, 2000);
-            });
-        }
-    });
     </script>
 </body>
 </html> 
