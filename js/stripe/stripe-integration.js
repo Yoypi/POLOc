@@ -114,6 +114,14 @@ class StripePayment {
       const productPrice = document.getElementById('total').textContent.replace('€', '').trim();
       const priceInCents = Math.round(parseFloat(productPrice) * 100); // Convertir en centimes
       
+      // Stocker les informations de commande en sessionStorage avant redirection
+      const orderId = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+      sessionStorage.setItem('orderComplete', 'pending');
+      sessionStorage.setItem('orderId', orderId);
+      sessionStorage.setItem('orderProduct', productName);
+      sessionStorage.setItem('orderPrice', productPrice + ' €');
+      sessionStorage.setItem('customerEmail', customerEmail);
+      
       // Créer une session de paiement Stripe
       const { error } = await this.stripe.redirectToCheckout({
         lineItems: [
