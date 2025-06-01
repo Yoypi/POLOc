@@ -1,81 +1,44 @@
+// Importer la classe StripePayment
+import StripePayment from './stripe/stripe-integration.js';
+
 // Script pour la page de checkout
 document.addEventListener('DOMContentLoaded', function() {
-    // Curseur personnalisé fortement amélioré
-    const cursorGlow = document.querySelector('.cursor-glow');
-    if (cursorGlow) {
-        // S'assurer que le curseur est initialisé correctement
-        document.body.style.cursor = 'none';
-        cursorGlow.style.display = 'block';
-        cursorGlow.style.opacity = '1';
-        cursorGlow.style.zIndex = '99999';
-        
-        // Récupérer le point central du curseur
-        const cursorDot = document.querySelector('.cursor-dot');
-        
-        // Fonction principale pour gérer le curseur
-        function updateCursorPosition(e) {
-            // Position précise avec translate3d pour de meilleures performances
-            cursorGlow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-            
-            // Mettre à jour la position du point central
-            if (cursorDot) {
-                cursorDot.style.left = `${e.clientX}px`;
-                cursorDot.style.top = `${e.clientY}px`;
-            }
-            
-            // Effet de traînée amélioré et plus visible
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = e.clientX + 'px';
-            trail.style.top = e.clientY + 'px';
-            
-            // Variation aléatoire de taille et couleur pour la traînée avec plus d'intensité
-            const size = 6 + Math.random() * 10;
-            const hue = Math.random() > 0.5 ? '0' : '350'; // Rouge ou magenta
-            const saturation = 95 + Math.random() * 5; // Haute saturation
-            const luminosity = 45 + Math.random() * 10; // Luminosité moyenne à haute
-            
-            trail.style.width = size + 'px';
-            trail.style.height = size + 'px';
-            trail.style.background = `radial-gradient(circle, hsla(${hue}, ${saturation}%, ${luminosity}%, 0.9) 0%, hsla(${hue}, ${saturation}%, ${luminosity}%, 0.4) 60%, hsla(${hue}, ${saturation}%, ${luminosity}%, 0) 100%)`;
-            trail.style.boxShadow = `0 0 10px hsla(${hue}, ${saturation}%, ${luminosity}%, 0.7)`;
-            
-            document.body.appendChild(trail);
-            
-            // Supprimer après un délai
-            setTimeout(() => {
-                trail.remove();
-            }, 800);
-        }
-        
-        // Utiliser mousedown/mouseup pour les cas où mousemove ne se déclenche pas assez
-        document.addEventListener('mousedown', updateCursorPosition);
-        document.addEventListener('mouseup', updateCursorPosition);
-        document.addEventListener('mousemove', updateCursorPosition);
-        
-        // S'assurer que le curseur est toujours visible
-        setTimeout(() => {
-            cursorGlow.style.display = 'block';
-            cursorGlow.style.opacity = '1';
-        }, 100);
-        
-        // Effet sur les éléments interactifs
-        const interactiveElements = document.querySelectorAll('a, button, .tab-header, input, select, .subscription-option');
-        
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', function() {
-                cursorGlow.style.width = '60px';
-                cursorGlow.style.height = '60px';
-                this.classList.add('element-hover');
-            });
-            
-            element.addEventListener('mouseleave', function() {
-                cursorGlow.style.width = '40px';
-                cursorGlow.style.height = '40px';
-                this.classList.remove('element-hover');
-            });
-        });
+    // Force le curseur à disparaître
+    document.documentElement.style.cursor = 'none';
+    document.body.style.cursor = 'none';
+    
+    // Récupérer le curseur
+    const cursor = document.getElementById('simple-cursor');
+    
+    // Fonction ultra-simple pour suivre le curseur
+    function moveCursor(e) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     }
+    
+    // Ajout de plusieurs écouteurs
+    document.addEventListener('mousemove', moveCursor);
+    document.addEventListener('mouseenter', moveCursor);
+    document.addEventListener('mouseover', moveCursor);
+    
+    // S'assurer qu'il est toujours visible
+    setInterval(() => {
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+        cursor.style.display = 'block';
+        cursor.style.opacity = '1';
+    }, 500);
+    
+    // Rendre le curseur visible au clic
+    document.addEventListener('click', function(e) {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.backgroundColor = 'orange';
+        
+        setTimeout(() => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.backgroundColor = 'red';
+        }, 200);
+    });
     
     // Gestion des onglets de paiement
     const tabHeaders = document.querySelectorAll('.tab-header');
@@ -99,16 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Définir les détails du produit en fonction du paramètre d'URL
     updateProductDetails(productParam);
     
-    // Changement d'onglet de paiement
     tabHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            // Supprimer la classe active de tous les onglets
+        header.addEventListener('click', function() {
+            // Retirer la classe active de tous les onglets
             tabHeaders.forEach(h => h.classList.remove('active'));
             tabPanes.forEach(p => p.classList.remove('active'));
             
             // Ajouter la classe active à l'onglet cliqué
-            header.classList.add('active');
-            const tabId = header.getAttribute('data-tab');
+            this.classList.add('active');
+            
+            // Afficher le contenu correspondant
+            const tabId = this.getAttribute('data-tab');
             document.getElementById(tabId).classList.add('active');
         });
     });
@@ -121,231 +85,245 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialisation des prix
     updatePrices();
     
-    // Copie de l'adresse crypto
-    const copyButton = document.getElementById('copyAddress');
-    if (copyButton) {
-        copyButton.addEventListener('click', () => {
-            const cryptoAddress = document.getElementById('cryptoAddress').innerText;
-            navigator.clipboard.writeText(cryptoAddress)
-                .then(() => {
-                    copyButton.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => {
-                        copyButton.innerHTML = '<i class="fas fa-copy"></i>';
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Erreur lors de la copie :', err);
-                });
-        });
-    }
+    // Animation du compte à rebours pour crypto
+    let timeLeft = 900; // 15 minutes en secondes
+    const timerDisplay = document.querySelector('.countdown-timer');
     
-    // Fonction pour mettre à jour les prix
-    function updatePrices() {
-        const selectedOption = document.querySelector('.subscription-option input:checked');
-        const duration = selectedOption ? selectedOption.value : '1week';
-        const price = productPrice[duration][productParam];
-        
-        // Mise à jour des montants
-        const subtotal = document.getElementById('subtotal');
-        const tax = document.getElementById('tax');
-        const total = document.getElementById('total');
-        
-        const priceValue = price;
-        const taxValue = (priceValue * 0.20).toFixed(2);
-        const totalValue = (parseFloat(priceValue) + parseFloat(taxValue)).toFixed(2);
-        
-        subtotal.textContent = priceValue + ' €';
-        tax.textContent = taxValue + ' €';
-        total.textContent = totalValue + ' €';
-        
-        // Mise à jour du montant crypto (simulé)
-        const cryptoAmount = document.getElementById('cryptoAmount');
-        if (cryptoAmount) {
-            // Conversion simulée en BTC (ce serait à remplacer par une API réelle)
-            const btcRate = 0.000037; // Taux de conversion simulé EUR/BTC
-            const btcAmount = (priceValue * btcRate).toFixed(6);
-            cryptoAmount.textContent = btcAmount + ' BTC';
-        }
-    }
-    
-    // Fonction pour mettre à jour les détails du produit
-    function updateProductDetails(productKey) {
-        const productDetails = {
-            'keyser': {
-                name: 'Keyser',
-                image: 'img/product1.jpg.png',
-                description: 'Cheat ultime pour voir à travers les murs et dominer tous les joueurs de FiveM'
-            },
-            'redengine': {
-                name: 'Red Engine',
-                image: 'img/product2.jpg.png',
-                description: 'Le cheat le plus puissant avec des fonctionnalités avancées et une détection minimale'
-            },
-            'redphaze': {
-                name: 'Red+Phaze',
-                image: 'img/product3.jpg.png',
-                description: 'Combinaison puissante de deux cheats premium pour une domination totale'
-            },
-            'susano': {
-                name: 'Susano',
-                image: 'img/product4.jpg.png',
-                description: 'Le cheat ultime avec des capacités inégalées et une interface intuitive'
+    if (timerDisplay) {
+        const updateTimer = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(updateTimer);
+                timerDisplay.textContent = "00:00";
+                timerDisplay.classList.add('expired');
+            } else {
+                timeLeft--;
             }
-        };
-        
-        if (productDetails[productKey]) {
-            product.textContent = productDetails[productKey].name;
-            productImage.src = productDetails[productKey].image;
-            document.getElementById('productDescription').textContent = productDetails[productKey].description;
-        }
+        }, 1000);
     }
     
-    // Validation du formulaire de carte
-    const paymentForm = document.querySelector('.payment-form');
-    if (paymentForm) {
-        paymentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Ici, vous pourriez ajouter une validation plus poussée des champs
-            const cardNumber = paymentForm.querySelector('input[placeholder="1234 5678 9012 3456"]').value;
-            const expiryDate = paymentForm.querySelector('input[placeholder="MM/AA"]').value;
-            const cvc = paymentForm.querySelector('input[placeholder="123"]').value;
-            const cardName = paymentForm.querySelector('input[placeholder="John Doe"]').value;
-            const email = paymentForm.querySelector('input[type="email"]').value;
-            
-            // Vérification de base
-            if (!cardNumber || !expiryDate || !cvc || !cardName || !email) {
-                showError('Veuillez remplir tous les champs');
-                return;
-            }
-            
-            // Redirection vers la page de confirmation (simulée)
-            simulatePayment();
-        });
-    }
+    // Effet de copie pour l'adresse crypto
+    const copyBtn = document.getElementById('copyAddress');
+    const cryptoAddress = document.getElementById('cryptoAddress');
     
-    // Fonction pour simuler le paiement avec animation
-    function simulatePayment() {
-        // Créer un overlay de paiement
-        const overlay = document.createElement('div');
-        overlay.className = 'payment-processing-overlay';
-        overlay.innerHTML = `
-            <div class="payment-processing-container">
-                <div class="processing-spinner"></div>
-                <h3>Traitement du paiement</h3>
-                <p>Veuillez patienter pendant que nous traitons votre paiement...</p>
-            </div>
-        `;
-        document.body.appendChild(overlay);
-        
-        // Simuler un temps de traitement
-        setTimeout(() => {
-            overlay.innerHTML = `
-                <div class="payment-processing-container success">
-                    <div class="processing-checkmark"><i class="fas fa-check"></i></div>
-                    <h3>Paiement réussi!</h3>
-                    <p>Vous allez être redirigé vers la page de confirmation...</p>
-                </div>
-            `;
+    if (copyBtn && cryptoAddress) {
+        copyBtn.addEventListener('click', function() {
+            const tempInput = document.createElement('input');
+            tempInput.value = cryptoAddress.textContent;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
             
-            // Rediriger vers la page de confirmation
+            // Animation de confirmation
+            this.innerHTML = '<i class="fas fa-check"></i>';
             setTimeout(() => {
-                window.location.href = 'confirmation.html';
-            }, 2000);
-        }, 3000);
-    }
-    
-    // Fonction pour afficher les erreurs
-    function showError(message) {
-        const errorElement = document.createElement('div');
-        errorElement.className = 'payment-error';
-        errorElement.innerHTML = `
-            <div class="error-content">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        
-        // Ajouter l'erreur au formulaire
-        paymentForm.prepend(errorElement);
-        
-        // Supprimer l'erreur après 4 secondes
-        setTimeout(() => {
-            errorElement.classList.add('fade-out');
-            setTimeout(() => {
-                errorElement.remove();
-            }, 300);
-        }, 4000);
-    }
-    
-    // Effet de survol sur les options d'abonnement
-    const subscriptionOptions = document.querySelectorAll('.subscription-option');
-    subscriptionOptions.forEach(option => {
-        option.addEventListener('mouseenter', () => {
-            option.classList.add('hover-glow');
-        });
-        
-        option.addEventListener('mouseleave', () => {
-            option.classList.remove('hover-glow');
-        });
-    });
-    
-    // Animation du curseur lors de la sélection d'une option
-    document.querySelectorAll('.subscription-option input').forEach(input => {
-        input.addEventListener('change', function() {
-            const cursor = document.getElementById('simple-cursor');
-            cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-            cursor.style.backgroundColor = 'orange';
-            
-            setTimeout(() => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.backgroundColor = 'red';
-            }, 300);
-        });
-    });
-    
-    // Animation du countdown
-    startCountdown();
-    
-    // Fonction pour animer le countdown
-    function startCountdown() {
-        // Cette fonction pourrait être améliorée pour utiliser une vraie date
-        const countdownItems = document.querySelectorAll('.countdown-item .number');
-        
-        // Animation simple de pulse pour les nombres
-        countdownItems.forEach(item => {
-            setInterval(() => {
-                item.classList.add('pulse');
-                setTimeout(() => {
-                    item.classList.remove('pulse');
-                }, 1000);
+                this.innerHTML = '<i class="fas fa-copy"></i>';
             }, 2000);
         });
     }
-    
-    // Effets visuels pour les backgrounds
-    animateBackgrounds();
-    
-    // Fonction pour animer les arrière-plans
-    function animateBackgrounds() {
-        const cyberGrid = document.querySelector('.cyber-grid');
-        const liquidBg = document.querySelector('.liquid-bg');
-        
-        // Déplacement subtil avec le mouvement de la souris
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            
-            if (cyberGrid) {
-                cyberGrid.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            }
-            
-            if (liquidBg) {
-                liquidBg.style.transform = `translate(${-moveX * 2}px, ${-moveY * 2}px)`;
-            }
-        });
-    }
+
+    // Intégration de Stripe
+    setupStripeIntegration();
 });
+
+// Configurer l'intégration Stripe
+async function setupStripeIntegration() {
+    try {
+        // Modifier le formulaire de paiement par carte
+        modifyPaymentForm();
+
+        // Initialiser Stripe
+        const stripePayment = new StripePayment();
+        await stripePayment.initialize();
+    } catch (error) {
+        console.error('Erreur lors de la configuration de Stripe:', error);
+    }
+}
+
+// Modifier le formulaire de paiement pour intégrer Stripe
+function modifyPaymentForm() {
+    // Trouver le formulaire de carte de crédit
+    const cardForm = document.querySelector('#creditCard form');
+    if (!cardForm) return;
+
+    // Ajouter l'ID au formulaire
+    cardForm.id = 'payment-form';
+
+    // Trouver les champs du formulaire
+    const cardNumberInput = cardForm.querySelector('input[placeholder="1234 5678 9012 3456"]');
+    const cardExpiryInput = cardForm.querySelector('input[placeholder="MM/AA"]');
+    const cardCVCInput = cardForm.querySelector('input[placeholder="123"]');
+    const nameInput = cardForm.querySelector('input[placeholder="John Doe"]');
+    const emailInput = cardForm.querySelector('input[placeholder="email@example.com"]');
+
+    // Ajouter des IDs aux champs existants
+    if (nameInput) nameInput.id = 'customer-name';
+    if (emailInput) emailInput.id = 'customer-email';
+
+    // Créer un conteneur pour l'élément de carte Stripe
+    const cardElementContainer = document.createElement('div');
+    cardElementContainer.id = 'card-element-container';
+    cardElementContainer.classList.add('form-group', 'cyber-input', 'stripe-container');
+
+    // Ajouter un label
+    const cardLabel = document.createElement('label');
+    cardLabel.textContent = 'Informations de carte';
+    cardElementContainer.appendChild(cardLabel);
+
+    // Remplacer les champs de carte par l'élément Stripe
+    if (cardNumberInput && cardNumberInput.parentNode) {
+        const parentNode = cardNumberInput.parentNode.parentNode;
+        if (parentNode) {
+            // Supprimer les champs de carte existants
+            if (cardNumberInput.parentNode) {
+                parentNode.removeChild(cardNumberInput.parentNode);
+            }
+            if (cardExpiryInput && cardExpiryInput.parentNode && cardExpiryInput.parentNode.parentNode) {
+                cardExpiryInput.parentNode.parentNode.parentNode.removeChild(cardExpiryInput.parentNode.parentNode);
+            }
+            
+            // Insérer le conteneur de l'élément de carte Stripe
+            parentNode.insertBefore(cardElementContainer, parentNode.firstChild);
+        }
+    }
+
+    // Ajouter des styles CSS pour l'élément Stripe
+    addStripeCSSStyles();
+}
+
+// Fonction pour mettre à jour les prix
+function updatePrices() {
+    const selectedOption = document.querySelector('.subscription-option input:checked');
+    const duration = selectedOption ? selectedOption.value : '1week';
+    const price = productPrice[duration][productParam];
+    
+    // Mise à jour des montants
+    const subtotal = document.getElementById('subtotal');
+    const tax = document.getElementById('tax');
+    const total = document.getElementById('total');
+    
+    const priceValue = price;
+    const taxValue = (priceValue * 0.20).toFixed(2);
+    const totalValue = (parseFloat(priceValue) + parseFloat(taxValue)).toFixed(2);
+    
+    subtotal.textContent = priceValue + ' €';
+    tax.textContent = taxValue + ' €';
+    total.textContent = totalValue + ' €';
+    
+    // Mise à jour du montant crypto (simulé)
+    const cryptoAmount = document.getElementById('cryptoAmount');
+    if (cryptoAmount) {
+        // Conversion simulée en BTC (ce serait à remplacer par une API réelle)
+        const btcRate = 0.000037; // Taux de conversion simulé EUR/BTC
+        const btcAmount = (priceValue * btcRate).toFixed(6);
+        cryptoAmount.textContent = btcAmount + ' BTC';
+    }
+}
+
+// Fonction pour mettre à jour les détails du produit
+function updateProductDetails(productKey) {
+    const productDetails = {
+        'keyser': {
+            name: 'Keyser',
+            image: 'img/product1.jpg.png',
+            description: 'Cheat ultime pour voir à travers les murs et dominer tous les joueurs de FiveM'
+        },
+        'redengine': {
+            name: 'Red Engine',
+            image: 'img/product2.jpg.png',
+            description: 'Le cheat le plus puissant avec des fonctionnalités avancées et une détection minimale'
+        },
+        'redphaze': {
+            name: 'Red+Phaze',
+            image: 'img/product3.jpg.png',
+            description: 'Combinaison puissante de deux cheats premium pour une domination totale'
+        },
+        'susano': {
+            name: 'Susano',
+            image: 'img/product4.jpg.png',
+            description: 'Le cheat ultime avec des capacités inégalées et une interface intuitive'
+        }
+    };
+    
+    if (productDetails[productKey]) {
+        product.textContent = productDetails[productKey].name;
+        productImage.src = productDetails[productKey].image;
+        document.getElementById('productDescription').textContent = productDetails[productKey].description;
+    }
+}
+
+// Effet de survol sur les options d'abonnement
+const subscriptionOptions = document.querySelectorAll('.subscription-option');
+subscriptionOptions.forEach(option => {
+    option.addEventListener('mouseenter', () => {
+        option.classList.add('hover-glow');
+    });
+    
+    option.addEventListener('mouseleave', () => {
+        option.classList.remove('hover-glow');
+    });
+});
+
+// Animation du curseur lors de la sélection d'une option
+document.querySelectorAll('.subscription-option input').forEach(input => {
+    input.addEventListener('change', function() {
+        const cursor = document.getElementById('simple-cursor');
+        cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+        cursor.style.backgroundColor = 'orange';
+        
+        setTimeout(() => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.backgroundColor = 'red';
+        }, 300);
+    });
+});
+
+// Animation du countdown
+startCountdown();
+
+// Fonction pour animer le countdown
+function startCountdown() {
+    // Cette fonction pourrait être améliorée pour utiliser une vraie date
+    const countdownItems = document.querySelectorAll('.countdown-item .number');
+    
+    // Animation simple de pulse pour les nombres
+    countdownItems.forEach(item => {
+        setInterval(() => {
+            item.classList.add('pulse');
+            setTimeout(() => {
+                item.classList.remove('pulse');
+            }, 1000);
+        }, 2000);
+    });
+}
+
+// Effets visuels pour les backgrounds
+animateBackgrounds();
+
+// Fonction pour animer les arrière-plans
+function animateBackgrounds() {
+    const cyberGrid = document.querySelector('.cyber-grid');
+    const liquidBg = document.querySelector('.liquid-bg');
+    
+    // Déplacement subtil avec le mouvement de la souris
+    document.addEventListener('mousemove', (e) => {
+        const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+        const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+        
+        if (cyberGrid) {
+            cyberGrid.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        }
+        
+        if (liquidBg) {
+            liquidBg.style.transform = `translate(${-moveX * 2}px, ${-moveY * 2}px)`;
+        }
+    });
+}
 
 // Styles pour les animations et effets
 const styles = `
@@ -476,4 +454,55 @@ const styles = `
 // Ajouter les styles à la page
 const styleSheet = document.createElement("style");
 styleSheet.innerText = styles;
-document.head.appendChild(styleSheet); 
+document.head.appendChild(styleSheet);
+
+// Ajouter des styles CSS pour l'élément Stripe
+function addStripeCSSStyles() {
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+        .stripe-container {
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(30, 30, 40, 0.8);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+        
+        #card-element {
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgba(40, 40, 50, 0.7);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 5px;
+            min-height: 20px;
+        }
+        
+        #card-element:hover, #card-element:focus {
+            border-color: rgba(255, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        #card-errors {
+            color: #ff3333;
+            text-align: left;
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 8px;
+            background-color: rgba(255, 0, 0, 0.1);
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .stripe-card-element {
+            transition: all 0.3s ease;
+        }
+        
+        button.loading {
+            opacity: 0.8;
+            cursor: wait;
+        }
+    `;
+    document.head.appendChild(styleElement);
+} 
