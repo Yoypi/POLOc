@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Samourai Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div id="simple-cursor" style="position: fixed; width: 20px; height: 20px; background-color: red; border-radius: 50%; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); top: 0; left: 0; box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.8); display: block !important; opacity: 1 !important;"></div>
+    
+    <!-- Éléments visuels dynamiques améliorés -->
+    <div class="cyber-grid"></div>
+    <div class="liquid-bg"></div>
+    <div class="payment-particles"></div>
+    <div class="laser-lines"></div>
+    <div class="glitch-overlay"></div>
+    <div class="digital-rain"></div>
+    <div class="matrix-effect"></div>
+    <div class="circuit-lines"></div>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo">
+                <h1>Samourai<span>Shop</span></h1>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times" id="menuClose"></i>
+                <ul>
+                    <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#products" class="nav-link">Cheat</a></li>
+                    <li><a href="https://discord.gg/FqCMpuFjqP" class="nav-link">Discord</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" id="menuOpen"></i>
+        </nav>
+    </header>
+
+    <section class="checkout-section">
+        <div class="cyber-mask"></div>
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <div class="katana-divider animated-divider"><span></span></div>
+                <h2 class="cyberpunk-text glitch-title" data-text="FINALISER VOTRE COMMANDE">FINALISER VOTRE <span class="accent-text">COMMANDE</span></h2>
+                <p>Vous êtes à un pas de <span class="cyber-highlight pulsating-text">dominer le monde FiveM</span></p>
+                <div class="secure-checkout-banner">
+                    <span><i class="fas fa-shield-alt"></i> Paiement 100% Sécurisé</span>
+                    <span><i class="fas fa-bolt"></i> Livraison Instantanée</span>
+                    <span><i class="fas fa-user-secret"></i> Anonymat Garanti</span>
+                </div>
+            </div>
+            
+            <div class="checkout-content">
+                <div class="product-summary cyber-card" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card-glitch-effect"></div>
+                    <div class="product-image-container">
+                        <img id="productImage" src="img/product1.jpg.png" alt="Produit">
+                        <div class="product-overlay"></div>
+                        <div class="cyber-frame"></div>
+                        <div class="scanning-line"></div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-title-container">
+                            <h3 id="productName" class="glitch-text" data-text="Keyser">Keyser</h3>
+                            <div class="product-badge-elite">PREMIUM</div>
+                        </div>
+                        <p id="productDescription">Cheat ultime pour voir à travers les murs et dominer tous les joueurs de FiveM</p>
+                        <div class="subscription-selector">
+                            <h4>Choisir votre formule <span class="cyber-chip">Options</span></h4>
+                            <div class="subscription-options checkout-options">
+                                <div class="subscription-option" id="option-1day">
+                                    <input type="radio" name="duration" id="duration-1day" value="1day">
+                                    <label for="duration-1day">
+                                        <span class="duration-name">1 jour</span>
+                                        <span class="duration-price" id="price-1day">6€</span>
+                                    </label>
+                                </div>
+                                <div class="subscription-option" id="option-3days">
+                                    <input type="radio" name="duration" id="duration-3days" value="3days">
+                                    <label for="duration-3days">
+                                        <span class="duration-name">3 jours</span>
+                                        <span class="duration-price" id="price-3days">8€</span>
+                                    </label>
+                                </div>
+                                <div class="subscription-option" id="option-1week">
+                                    <input type="radio" name="duration" id="duration-1week" value="1week" checked>
+                                    <label for="duration-1week">
+                                        <span class="duration-name">1 semaine</span>
+                                        <span class="duration-price" id="price-1week">11€</span>
+                                    </label>
+                                </div>
+                                <div class="subscription-option" id="option-1month">
+                                    <input type="radio" name="duration" id="duration-1month" value="1month">
+                                    <label for="duration-1month">
+                                        <span class="duration-name">1 mois</span>
+                                        <span class="duration-price" id="price-1month">16€</span>
+                                    </label>
+                                </div>
+                                <div class="subscription-option" id="option-3months">
+                                    <input type="radio" name="duration" id="duration-3months" value="3months">
+                                    <label for="duration-3months">
+                                        <span class="duration-name">3 mois</span>
+                                        <span class="duration-price" id="price-3months">31€</span>
+                                    </label>
+                                </div>
+                                <div class="subscription-option" id="option-lifetime">
+                                    <input type="radio" name="duration" id="duration-lifetime" value="lifetime">
+                                    <label for="duration-lifetime">
+                                        <span class="duration-name">Lifetime</span>
+                                        <span class="duration-price" id="price-lifetime">31€</span>
+                                        <span class="best-value">Meilleur prix</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-details">
+                            <div class="cyber-scan-lines"></div>
+                            <div class="price-row">
+                                <span>Prix HT</span>
+                                <span id="subtotal">9.17 €</span>
+                            </div>
+                            <div class="price-row">
+                                <span>TVA (20%)</span>
+                                <span id="tax">1.83 €</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span id="total" class="price-highlight">11.00 €</span>
+                            </div>
+                        </div>
+                        <div class="badge-container">
+                            <span class="badge secure-badge"><i class="fas fa-shield-alt"></i> 100% Indétectable</span>
+                            <span class="badge delivery-badge"><i class="fas fa-bolt"></i> Livraison immédiate</span>
+                            <span class="badge support-badge"><i class="fas fa-headset"></i> Support 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-methods cyber-card" data-aos="fade-left" data-aos-delay="100">
+                    <div class="card-glitch-effect"></div>
+                    <div class="payment-header">
+                        <h3><i class="fas fa-lock"></i> Méthode de paiement <span class="secure-tag">SÉCURISÉ</span></h3>
+                    </div>
+                    <div class="payment-tabs">
+                        <div class="tab-headers">
+                            <div class="tab-header active" data-tab="creditCard">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Carte bancaire</span>
+                            </div>
+                            <div class="tab-header" data-tab="crypto">
+                                <i class="fab fa-bitcoin"></i>
+                                <span>Crypto</span>
+                            </div>
+                            <div class="tab-header" data-tab="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <span>PayPal</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div id="creditCard" class="tab-pane active">
+                                <form class="payment-form">
+                                    <div class="form-group cyber-input">
+                                        <label>Numéro de carte</label>
+                                        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" class="neon-input">
+                                        <div class="input-line"></div>
+                                        <div class="card-icons">
+                                            <i class="fab fa-cc-visa"></i>
+                                            <i class="fab fa-cc-mastercard"></i>
+                                            <i class="fab fa-cc-amex"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group cyber-input">
+                                            <label>Date d'expiration</label>
+                                            <input type="text" placeholder="MM/AA" class="neon-input">
+                                            <div class="input-line"></div>
+                                        </div>
+                                        <div class="form-group cyber-input">
+                                            <label>CVC</label>
+                                            <input type="text" placeholder="123" maxlength="3" class="neon-input">
+                                            <div class="input-line"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group cyber-input">
+                                        <label>Nom sur la carte</label>
+                                        <input type="text" placeholder="John Doe" class="neon-input">
+                                        <div class="input-line"></div>
+                                    </div>
+                                    <div class="form-group cyber-input">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="email@example.com" class="neon-input">
+                                        <div class="input-line"></div>
+                                    </div>
+                                    <button type="submit" class="btn payment-btn cyberpunk-btn glow-btn">
+                                        <span class="btn-content">Payer maintenant <i class="fas fa-lock"></i></span>
+                                        <span class="btn-glitch"></span>
+                                        <span class="btn-label">PAIEMENT SÉCURISÉ</span>
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <div id="crypto" class="tab-pane">
+                                <div class="crypto-payment">
+                                    <div class="qr-code">
+                                        <img src="img/qr-code.png" alt="QR Code">
+                                        <div class="qr-scanning-effect"></div>
+                                    </div>
+                                    <p>Envoyez exactement <strong id="cryptoAmount" class="crypto-amount">0.0058 BTC</strong> à cette adresse :</p>
+                                    <div class="crypto-address">
+                                        <code id="cryptoAddress">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                                        <button id="copyAddress" class="copy-btn"><i class="fas fa-copy"></i></button>
+                                    </div>
+                                    <div class="crypto-time">
+                                        <div class="timer-icon"><i class="fas fa-clock"></i></div>
+                                        <div class="timer-text">
+                                            <span>Temps restant:</span>
+                                            <div class="countdown-timer">15:00</div>
+                                        </div>
+                                    </div>
+                                    <p class="crypto-note">Une fois le paiement effectué, vous recevrez votre produit à l'adresse email fournie ci-dessous.</p>
+                                    <div class="form-group cyber-input">
+                                        <label>Votre email</label>
+                                        <input type="email" placeholder="email@example.com" required class="neon-input">
+                                        <div class="input-line"></div>
+                                    </div>
+                                    <button class="btn payment-btn cyberpunk-btn glow-btn">
+                                        <span class="btn-content">Confirmer le paiement <i class="fas fa-check-circle"></i></span>
+                                        <span class="btn-glitch"></span>
+                                        <span class="btn-label">VÉRIFICATION EN COURS</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="paypal" class="tab-pane">
+                                <div class="paypal-payment">
+                                    <div class="payment-security-badge">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>Paiement sécurisé</span>
+                                        <div class="security-pulse"></div>
+                                    </div>
+                                    <p>Vous allez être redirigé vers PayPal pour finaliser votre paiement en toute sécurité.</p>
+                                    <div class="paypal-logo cyber-logo">
+                                        <i class="fab fa-paypal"></i>
+                                        <div class="logo-glow"></div>
+                                    </div>
+                                    <button class="btn payment-btn cyberpunk-btn glow-btn">
+                                        <span class="btn-content">Payer avec PayPal <i class="fas fa-external-link-alt"></i></span>
+                                        <span class="btn-glitch"></span>
+                                        <span class="btn-label">REDIRECTION SÉCURISÉE</span>
+                                    </button>
+                                    <div class="payment-guarantee">
+                                        <i class="fas fa-undo"></i>
+                                        <span>Garantie satisfait ou remboursé pendant 24h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-footer">
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>Paiement Sécurisé</span>
+                        <div class="badge-glow"></div>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Anti-détection</span>
+                        <div class="badge-glow"></div>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="fas fa-headset"></i>
+                        <span>Support 24/7</span>
+                        <div class="badge-glow"></div>
+                    </div>
+                </div>
+                <p class="disclaimer">En effectuant un achat, vous acceptez nos <a href="#">conditions générales</a> et notre <a href="#">politique de confidentialité</a>.</p>
+                <div class="support-info">
+                    <p>Besoin d'aide ? Rejoignez notre <a href="https://discord.gg/FqCMpuFjqP" class="discord-link"><i class="fab fa-discord"></i> Discord</a> pour obtenir de l'assistance.</p>
+                </div>
+                <div class="back-link">
+                    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Retour à la boutique</a>
+                </div>
+                <div class="coming-soon-teaser">
+                    <div class="cyber-banner">
+                        <div class="laser-beam"></div>
+                        <p>Découvrez bientôt notre nouveau produit révolutionnaire <span class="cyber-highlight pulsating-text">Samourai Gen</span></p>
+                    </div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="number">12</span>
+                            <span class="label">Jours</span>
+                            <div class="number-glow"></div>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number">06</span>
+                            <span class="label">Heures</span>
+                            <div class="number-glow"></div>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="number">34</span>
+                            <span class="label">Minutes</span>
+                            <div class="number-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-glitch-line"></div>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo">
+                <h3>Samourai<span>Shop</span></h3>
+                <p>Élever votre expérience FiveM depuis 2021</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="index.html#home">Accueil</a></li>
+                    <li><a href="index.html#products">Cheat</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-products">
+                <h4>Nos produits</h4>
+                <ul>
+                    <li><a href="#">Samourai Gen <span class="new-label">Nouveau</span></a></li>
+                    <li><a href="checkout.html?product=keyser">Keyser</a></li>
+                    <li><a href="checkout.html?product=redengine">Red Engine</a></li>
+                    <li><a href="checkout.html?product=redphaze">Red+Phaze</a></li>
+                    <li><a href="checkout.html?product=susano">Susano</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="https://discord.gg/FqCMpuFjqP"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Samourai Shop. Tous droits réservés.</p>
+            <p class="disclaimer">Nos produits sont destinés à un usage récréatif, nous ne sommes pas responsables de votre utilisation.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            disable: 'mobile'
+        });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Force le curseur à disparaître
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+        
+        // Récupérer le curseur
+        const cursor = document.getElementById('simple-cursor');
+        
+        // Fonction ultra-simple pour suivre le curseur
+        function moveCursor(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        }
+        
+        // Ajout de plusieurs écouteurs
+        document.addEventListener('mousemove', moveCursor);
+        document.addEventListener('mouseenter', moveCursor);
+        document.addEventListener('mouseover', moveCursor);
+        
+        // S'assurer qu'il est toujours visible
+        setInterval(() => {
+            document.documentElement.style.cursor = 'none';
+            document.body.style.cursor = 'none';
+            cursor.style.display = 'block';
+            cursor.style.opacity = '1';
+        }, 500);
+        
+        // Rendre le curseur visible au clic
+        document.addEventListener('click', function(e) {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.backgroundColor = 'orange';
+            
+            setTimeout(() => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'red';
+            }, 200);
+        });
+        
+        // Gestion des onglets de paiement
+        const tabHeaders = document.querySelectorAll('.tab-header');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                // Retirer la classe active de tous les onglets
+                tabHeaders.forEach(h => h.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                
+                // Ajouter la classe active à l'onglet cliqué
+                this.classList.add('active');
+                
+                // Afficher le contenu correspondant
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Animation du compte à rebours pour crypto
+        let timeLeft = 900; // 15 minutes en secondes
+        const timerDisplay = document.querySelector('.countdown-timer');
+        
+        if (timerDisplay) {
+            const updateTimer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(updateTimer);
+                    timerDisplay.textContent = "00:00";
+                    timerDisplay.classList.add('expired');
+                } else {
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+        
+        // Effet de copie pour l'adresse crypto
+        const copyBtn = document.getElementById('copyAddress');
+        const cryptoAddress = document.getElementById('cryptoAddress');
+        
+        if (copyBtn && cryptoAddress) {
+            copyBtn.addEventListener('click', function() {
+                const tempInput = document.createElement('input');
+                tempInput.value = cryptoAddress.textContent;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                // Animation de confirmation
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            });
+        }
+    });
+    </script>
+</body>
+</html> 

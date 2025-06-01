@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement Confirmé - Samourai Shop</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Styles spécifiques à la page de confirmation */
+        .confirmation-section {
+            padding: 120px 0 80px;
+            background-color: var(--secondary-color);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .confirmation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .confirmation-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .confirmation-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine-effect 8s linear infinite;
+        }
+        
+        @keyframes shine-effect {
+            0% { top: -100%; left: -100%; }
+            100% { top: 100%; left: 100%; }
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+            position: relative;
+            border: 2px solid rgba(39, 174, 96, 0.3);
+            animation: pulse-success 2s infinite;
+        }
+        
+        @keyframes pulse-success {
+            0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(39, 174, 96, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+        }
+        
+        .success-icon::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border: 2px dashed rgba(39, 174, 96, 0.3);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .confirmation-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--light-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .confirmation-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+        
+        .confirmation-message {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .order-details {
+            background-color: rgba(15, 19, 32, 0.5);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+        
+        .order-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .order-info:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .order-label {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+        
+        .order-value {
+            color: var(--light-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .access-key {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px dashed rgba(231, 76, 60, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .key-display {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            background-color: rgba(15, 19, 32, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .copy-btn {
+            background-color: rgba(231, 76, 60, 0.2);
+            border: none;
+            color: var(--primary-color);
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .key-info {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-align: left;
+        }
+        
+        .next-steps {
+            margin-bottom: 40px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+            background-color: rgba(15, 19, 32, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(231, 76, 60, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            color: var(--light-color);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .step-content p {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #c0392b);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg);
+            z-index: 1;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+        
+        .btn-secondary {
+            background-color: rgba(15, 19, 32, 0.5);
+            color: var(--light-color);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(231, 76, 60, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: rgba(231, 76, 60, 0.3);
+            border-radius: 50%;
+            animation: float 10s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .confirmation-card {
+                padding: 25px;
+            }
+            
+            .confirmation-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .key-display {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div id="simple-cursor" style="position: fixed; width: 20px; height: 20px; background-color: red; border-radius: 50%; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); top: 0; left: 0; box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.8); display: block !important; opacity: 1 !important;"></div>
+    
+    <!-- Éléments visuels dynamiques -->
+    <div class="cyber-grid"></div>
+    <div class="liquid-bg"></div>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo">
+                <h1>Samourai<span>Shop</span></h1>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times" id="menuClose"></i>
+                <ul>
+                    <li><a href="index.html#home" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#products" class="nav-link">Cheat</a></li>
+                    <li><a href="https://discord.gg/FqCMpuFjqP" class="nav-link">Discord</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" id="menuOpen"></i>
+        </nav>
+    </header>
+
+    <section class="confirmation-section">
+        <div class="particles" id="particles"></div>
+        <div class="confirmation-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="confirmation-card">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2 class="confirmation-title">Paiement Confirmé</h2>
+                <p class="confirmation-message">Merci pour votre achat ! Votre paiement a été traité avec succès et votre cheat est maintenant prêt à être utilisé.</p>
+                
+                <div class="order-details">
+                    <div class="order-info">
+                        <span class="order-label">Numéro de commande:</span>
+                        <span class="order-value">#SMP-<span id="orderNumber">25841</span></span>
+                    </div>
+                    <div class="order-info">
+                        <span class="order-label">Date:</span>
+                        <span class="order-value" id="orderDate">23 Mai 2023</span>
+                    </div>
+                    <div class="order-info">
+                        <span class="order-label">Produit:</span>
+                        <span class="order-value" id="productName">Keyser</span>
+                    </div>
+                    <div class="order-info">
+                        <span class="order-label">Durée:</span>
+                        <span class="order-value" id="productDuration">1 semaine</span>
+                    </div>
+                    <div class="order-info">
+                        <span class="order-label">Total:</span>
+                        <span class="order-value" id="orderTotal">13.20 €</span>
+                    </div>
+                </div>
+                
+                <div class="access-key">
+                    <h3 style="color: var(--light-color); margin-bottom: 15px;">Votre clé d'accès</h3>
+                    <div class="key-display">
+                        <span id="accessKey">KYS-7X92-F4H3-9W1Z-PQ7T</span>
+                        <button id="copyKeyBtn" class="copy-btn"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="key-info">
+                        <p><i class="fas fa-info-circle"></i> Cette clé est requise pour activer votre cheat. Gardez-la en lieu sûr et ne la partagez avec personne.</p>
+                    </div>
+                </div>
+                
+                <div class="next-steps">
+                    <h3 style="color: var(--light-color); margin-bottom: 20px;">Prochaines étapes</h3>
+                    
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Télécharger le launcher</h4>
+                            <p>Téléchargez notre launcher exclusif pour installer et configurer votre cheat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Installer et activer</h4>
+                            <p>Exécutez le launcher et utilisez votre clé d'accès pour activer votre produit.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Rejoindre notre Discord</h4>
+                            <p>Rejoignez notre communauté pour obtenir de l'aide et des astuces d'utilisation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="#" class="btn-primary download-btn"><i class="fas fa-download"></i> Télécharger le launcher</a>
+                    <a href="https://discord.gg/FqCMpuFjqP" class="btn-secondary discord-btn"><i class="fab fa-discord"></i> Rejoindre Discord</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo">
+                <h3>Samourai<span>Shop</span></h3>
+                <p>Élever votre expérience FiveM depuis 2021</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="index.html#home">Accueil</a></li>
+                    <li><a href="index.html#products">Cheat</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-products">
+                <h4>Nos produits</h4>
+                <ul>
+                    <li><a href="#">Samourai Gen <span class="new-label">Nouveau</span></a></li>
+                    <li><a href="checkout.html?product=keyser">Keyser</a></li>
+                    <li><a href="checkout.html?product=redengine">Red Engine</a></li>
+                    <li><a href="checkout.html?product=redphaze">Red+Phaze</a></li>
+                    <li><a href="checkout.html?product=susano">Susano</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="https://discord.gg/FqCMpuFjqP"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Samourai Shop. Tous droits réservés.</p>
+            <p class="disclaimer">Nos produits sont destinés à un usage récréatif, nous ne sommes pas responsables de votre utilisation.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            disable: 'mobile'
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force le curseur à disparaître
+            document.documentElement.style.cursor = 'none';
+            document.body.style.cursor = 'none';
+            
+            // Récupérer le curseur
+            const cursor = document.getElementById('simple-cursor');
+            
+            // Fonction ultra-simple pour suivre le curseur
+            function moveCursor(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            }
+            
+            // Ajout de plusieurs écouteurs
+            document.addEventListener('mousemove', moveCursor);
+            document.addEventListener('mouseenter', moveCursor);
+            document.addEventListener('mouseover', moveCursor);
+            
+            // S'assurer qu'il est toujours visible
+            setInterval(() => {
+                document.documentElement.style.cursor = 'none';
+                document.body.style.cursor = 'none';
+                cursor.style.display = 'block';
+                cursor.style.opacity = '1';
+            }, 500);
+            
+            // Rendre le curseur visible au clic
+            document.addEventListener('click', function(e) {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'orange';
+                
+                setTimeout(() => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.backgroundColor = 'red';
+                }, 200);
+            });
+            
+            // Gérer le bouton de copie
+            const copyBtn = document.getElementById('copyKeyBtn');
+            const accessKey = document.getElementById('accessKey');
+            
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(accessKey.textContent)
+                    .then(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Erreur lors de la copie :', err);
+                    });
+            });
+            
+            // Récupérer les paramètres d'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productParam = urlParams.get('product') || 'keyser';
+            const durationParam = urlParams.get('duration') || '1week';
+            
+            // Mettre à jour les infos de la commande
+            updateOrderDetails(productParam, durationParam);
+            
+            // Créer des particules
+            createParticles();
+            
+            // Mettre à jour la date à aujourd'hui
+            updateCurrentDate();
+        });
+        
+        function updateOrderDetails(product, duration) {
+            const productMap = {
+                'keyser': 'Keyser',
+                'redengine': 'Red Engine',
+                'redphaze': 'Red+Phaze',
+                'susano': 'Susano'
+            };
+            
+            const durationMap = {
+                '1day': '1 jour',
+                '3days': '3 jours',
+                '1week': '1 semaine',
+                '1month': '1 mois',
+                '3months': '3 mois',
+                'lifetime': 'Lifetime'
+            };
+            
+            const priceMap = {
+                'keyser': {
+                    '1day': 6, '3days': 8, '1week': 11, '1month': 16, '3months': 31, 'lifetime': 31
+                },
+                'redengine': {
+                    '1day': 8, '3days': 11, '1week': 14, '1month': 24, '3months': 45, 'lifetime': 45
+                },
+                'redphaze': {
+                    '1day': 15, '3days': 20, '1week': 25, '1month': 40, '3months': 70, 'lifetime': 70
+                },
+                'susano': {
+                    '1day': 25, '3days': 35, '1week': 45, '1month': 80, '3months': 140, 'lifetime': 140
+                }
+            };
+            
+            const productName = document.getElementById('productName');
+            const productDuration = document.getElementById('productDuration');
+            const orderTotal = document.getElementById('orderTotal');
+            const orderNumber = document.getElementById('orderNumber');
+            
+            // Générer un numéro de commande aléatoire
+            orderNumber.textContent = Math.floor(10000 + Math.random() * 90000);
+            
+            // Mettre à jour les détails du produit
+            productName.textContent = productMap[product] || 'Keyser';
+            productDuration.textContent = durationMap[duration] || '1 semaine';
+            
+            // Calculer le prix
+            const price = priceMap[product]?.[duration] || 11;
+            const total = (price * 1.2).toFixed(2); // Ajouter 20% de TVA
+            orderTotal.textContent = total + ' €';
+            
+            // Générer une clé d'accès aléatoire
+            generateRandomKey();
+        }
+        
+        function generateRandomKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let key = 'KYS-';
+            
+            // Générer 4 groupes de 4 caractères
+            for (let i = 0; i < 4; i++) {
+                for (let j = 0; j < 4; j++) {
+                    key += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                if (i < 3) key += '-';
+            }
+            
+            document.getElementById('accessKey').textContent = key;
+        }
+        
+        function updateCurrentDate() {
+            const months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+            const now = new Date();
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            
+            document.getElementById('orderDate').textContent = `${day} ${month} ${year}`;
+        }
+        
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Position aléatoire
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Taille aléatoire
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Vitesse et délai aléatoires
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Opacité aléatoire
+                const opacity = Math.random() * 0.5 + 0.1;
+                particle.style.opacity = opacity;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+    </script>
+</body>
+</html> 

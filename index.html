@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samourai Shop - Solutions Premium FiveM</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div id="simple-cursor" style="position: fixed; width: 20px; height: 20px; background-color: red; border-radius: 50%; pointer-events: none; z-index: 9999999; transform: translate(-50%, -50%); top: 0; left: 0; box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.8); display: block !important; opacity: 1 !important;"></div>
+    
+    <!-- Éléments visuels améliorés -->
+    <div class="cyber-grid"></div>
+    <div class="liquid-bg"></div>
+    <div class="digital-rain"></div>
+    <div class="cyber-particles"></div>
+    <div class="glitch-overlay"></div>
+    <div class="matrix-effect"></div>
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo" id="logo">
+                <h1>Samourai<span>Shop</span></h1>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times" id="menuClose"></i>
+                <ul>
+                    <li><a href="#home" class="nav-link active"><span class="nav-icon"><i class="fas fa-home"></i></span>Accueil</a></li>
+                    <li><a href="#products" class="nav-link"><span class="nav-icon"><i class="fas fa-shopping-cart"></i></span>Cheat</a></li>
+                    <li><a href="https://discord.gg/FqCMpuFjqP" class="nav-link"><span class="nav-icon"><i class="fab fa-discord"></i></span>Discord</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" id="menuOpen"></i>
+        </nav>
+        
+        <!-- Section Hero améliorée -->
+        <div class="hero" id="home">
+            <div class="hero-glitch-overlay"></div>
+            <div class="hero-animation-container">
+                <div class="glitch-lines"></div>
+                <div class="hero-circuit"></div>
+                <div class="neon-glow top-left"></div>
+                <div class="neon-glow bottom-right"></div>
+                <div class="floating-elements">
+                    <div class="floating-icon"><i class="fas fa-code"></i></div>
+                    <div class="floating-icon delay-1"><i class="fas fa-shield-alt"></i></div>
+                    <div class="floating-icon delay-2"><i class="fas fa-bolt"></i></div>
+                    <div class="floating-icon delay-3"><i class="fas fa-skull"></i></div>
+                    <div class="floating-icon delay-4"><i class="fas fa-robot"></i></div>
+                    <div class="floating-icon delay-5"><i class="fas fa-bug"></i></div>
+                </div>
+                <div class="cyber-mask"></div>
+            </div>
+            
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <div class="katana-divider animated-divider"><span></span></div>
+                <div class="title-container">
+                    <h2 class="cyberpunk-text glitch-title" data-text="DEVENEZ LE MEILLEUR TROLLEUR FIVEM">
+                        DEVENEZ LE <span class="accent-text">MEILLEUR</span> 
+                        <span class="glow-text">TROLLEUR</span> 
+                        <span class="break-text">FIVEM</span>
+                    </h2>
+                    <div class="title-backdrop"></div>
+                </div>
+                
+                <p class="hero-description">Le site de référence pour tous les <span class="text-highlight">trolleurs</span> qui veulent régner en maîtres sur les serveurs FiveM.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#products" class="btn glow-btn cyberpunk-btn">Découvrir nos solutions <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://discord.gg/FqCMpuFjqP" class="btn discord-btn"><i class="fab fa-discord"></i> Rejoindre Discord</a>
+                </div>
+                
+                <div class="hero-badge-container">
+                    <div class="badge premium-badge"><i class="fas fa-crown"></i> Premium</div>
+                    <div class="badge secure-badge"><i class="fas fa-shield-alt"></i> 100% Indétectable</div>
+                    <div class="badge support-badge"><i class="fas fa-headset"></i> Support 24/7</div>
+                </div>
+            </div>
+            
+            <div class="hero-scanner">
+                <div class="scan-line"></div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <span class="mouse">
+                    <span class="mouse-wheel"></span>
+                </span>
+                <p>Défiler pour découvrir</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannière d'annonce améliorée -->
+    <div class="announcement-banner">
+        <div class="banner-content">
+            <div class="banner-icon pulse-effect"><i class="fas fa-bolt"></i></div>
+            <div class="banner-text">
+                <span class="highlight-text">NOUVEAU</span> Samourai Gen arrive bientôt - Soyez le premier à le tester
+            </div>
+            <a href="#products" class="banner-btn glitch-btn">En savoir plus <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="banner-glitch-effect"></div>
+    </div>
+
+    <section class="products" id="products">
+        <div class="section-header" data-aos="fade-up">
+            <div class="katana-divider glow-divider"><span></span></div>
+            <h2>Nos <span class="accent-text typewriter-text" data-text="Cheats">Cheats</span></h2>
+            <p>Des solutions conçues pour troller et dominer les serveurs FiveM</p>
+        </div>
+        <div class="product-container">
+            <div class="product-card coming-soon" data-aos="fade-up" data-aos-delay="50">
+                <div class="product-image">
+                    <div class="product-overlay"></div>
+                    <img src="img/logo.png" alt="Samourai Gen">
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="card-glitch-effect"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Samourai Gen</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <p>Notre technologie de nouvelle génération qui va révolutionner l'univers du trolling sur FiveM</p>
+                    <div class="coming-soon-label">Bientôt disponible</div>
+                    <button class="notify-btn">Être notifié <i class="fas fa-bell"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-image">
+                    <div class="product-overlay"></div>
+                    <img src="img/product1.jpg.png" alt="Keyser">
+                    <div class="product-badge">BEST SELLER</div>
+                    <div class="card-hover-effect"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Keyser <span class="price-tag">Dès 6€</span></h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <p>Cheat ultime pour voir à travers les murs et dominer tous les joueurs de FiveM</p>
+                    <div class="subscription-options">
+                        <div class="subscription-option">
+                            <input type="radio" name="keyser-plan" id="keyser-1day" checked>
+                            <label for="keyser-1day">1 jour - 6€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="keyser-plan" id="keyser-1week">
+                            <label for="keyser-1week">1 semaine - 11€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="keyser-plan" id="keyser-1month">
+                            <label for="keyser-1month">1 mois - 16€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="keyser-plan" id="keyser-lifetime">
+                            <label for="keyser-lifetime">Lifetime - 31€</label>
+                        </div>
+                    </div>
+                    <a href="checkout.html?product=keyser" class="btn glow-btn">Commander <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-image">
+                    <div class="product-overlay"></div>
+                    <img src="img/product2.jpg.png" alt="Red Engine">
+                    <div class="card-hover-effect"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Red Engine</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4.0)</span>
+                    </div>
+                    <p>Kit complet de personnalisation avancée pour votre expérience de jeu</p>
+                    <div class="subscription-options">
+                        <div class="subscription-option">
+                            <input type="radio" name="redengine-plan" id="redengine-1week" checked>
+                            <label for="redengine-1week">1 semaine - 11€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="redengine-plan" id="redengine-1month">
+                            <label for="redengine-1month">1 mois - 21€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="redengine-plan" id="redengine-lifetime">
+                            <label for="redengine-lifetime">Lifetime - 51€</label>
+                        </div>
+                    </div>
+                    <a href="checkout.html?product=redengine" class="btn">Commander <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-image">
+                    <div class="product-overlay"></div>
+                    <img src="img/product3.jpg.png" alt="Red+Phaze">
+                    <div class="card-hover-effect"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Red+Phaze</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <p>Solution avancée pour les vrais connaisseurs de l'univers FiveM</p>
+                    <div class="subscription-options">
+                        <div class="subscription-option">
+                            <input type="radio" name="redphaze-plan" id="redphaze-1week" checked>
+                            <label for="redphaze-1week">1 semaine - 24€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="redphaze-plan" id="redphaze-1month">
+                            <label for="redphaze-1month">1 mois - 44€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="redphaze-plan" id="redphaze-lifetime">
+                            <label for="redphaze-lifetime">Lifetime - 101€</label>
+                        </div>
+                    </div>
+                    <a href="checkout.html?product=redphaze" class="btn">Commander <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="product-card featured-product" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-image">
+                    <div class="product-overlay"></div>
+                    <img src="img/product4.jpg.png" alt="Susano">
+                    <div class="product-badge premium-product-badge">Premium</div>
+                    <div class="card-hover-effect"></div>
+                </div>
+                <div class="product-info">
+                    <h3>Susano</h3>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <p>Notre solution ultime pour une maîtrise totale de votre environnement</p>
+                    <div class="subscription-options">
+                        <div class="subscription-option">
+                            <input type="radio" name="susano-plan" id="susano-3days" checked>
+                            <label for="susano-3days">3 jours - 8€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="susano-plan" id="susano-1week">
+                            <label for="susano-1week">1 semaine - 13€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="susano-plan" id="susano-1month">
+                            <label for="susano-1month">1 mois - 18€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="susano-plan" id="susano-3months">
+                            <label for="susano-3months">3 mois - 31€</label>
+                        </div>
+                        <div class="subscription-option">
+                            <input type="radio" name="susano-plan" id="susano-lifetime">
+                            <label for="susano-lifetime">Lifetime - 61€</label>
+                        </div>
+                    </div>
+                    <a href="checkout.html?product=susano" class="btn glow-btn">Commander <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about parallax-section" id="about">
+        <div class="about-content" data-aos="fade-up">
+            <div class="katana-divider glow-divider"><span></span></div>
+            <h2>Domination <span class="accent-text">Totale</span></h2>
+            <div class="pulsating-text">Le meilleur site de cheats FiveM</div>
+            <p>Samourai Shop est votre source premium pour des solutions FiveM de haute qualité. Nos cheats sont conçus pour vous donner une domination totale et vous transformer en véritable dieu du serveur.</p>
+            <p>Notre mission est simple : vous donner les outils les plus puissants pour troller, détruire et dominer n'importe quel serveur FiveM sans jamais vous faire détecter. <a href="https://discord.gg/FqCMpuFjqP" class="accent-text">Rejoignez notre Discord</a> pour plus d'informations.</p>
+            
+            <div class="about-animation-container">
+                <div class="floating-icon"><i class="fas fa-trophy"></i></div>
+                <div class="floating-icon delay-1"><i class="fas fa-bomb"></i></div>
+                <div class="floating-icon delay-2"><i class="fas fa-skull"></i></div>
+                <div class="cyber-circle"></div>
+            </div>
+            
+            <div class="about-stats">
+                <div class="stat-item glowing-item">
+                    <div class="stat-number">1200+</div>
+                    <div class="stat-label">Serveurs Trollés</div>
+                </div>
+                <div class="stat-item glowing-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Indétectable</div>
+                </div>
+                <div class="stat-item glowing-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Trolleur</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Indétectable</h3>
+            <p>Solutions testées pour rester sous le radar des administrateurs</p>
+            <div class="feature-glow"></div>
+        </div>
+        <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-bolt"></i>
+            <h3>Performance</h3>
+            <p>Optimisé pour troller sans ralentissements</p>
+            <div class="feature-glow"></div>
+        </div>
+        <div class="feature" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-headset"></i>
+            <h3>Support 24/7</h3>
+            <p>Une équipe dédiée pour vous aider à troller</p>
+            <div class="feature-glow"></div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-particles"></div>
+        <div class="laser-effect"></div>
+        <div class="cta-content" data-aos="zoom-in">
+            <h2 class="cyberpunk-text glitch-title" data-text="PRÊT À DOMINER FIVEM ?">PRÊT À <span class="accent-text">DOMINER</span> FIVEM ?</h2>
+            <p>Rejoignez les centaines de joueurs qui ont déjà choisi la voie du Samouraï.</p>
+            
+            <div class="cta-countdown">
+                <div class="countdown-item">
+                    <span class="number">21</span>
+                    <span class="label">HEURES</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number">37</span>
+                    <span class="label">MINUTES</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number">20</span>
+                    <span class="label">SECONDES</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#products" class="btn glow-btn cyberpunk-btn">VOIR NOS PRODUITS <i class="fas fa-arrow-right"></i></a>
+                <a href="https://discord.gg/FqCMpuFjqP" class="btn outline-btn">REJOINDRE DISCORD <i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-glitch-line"></div>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="img/logo.png" alt="Samourai Shop Logo">
+                <h3>Samourai<span>Shop</span></h3>
+                <p>Élever votre expérience FiveM depuis 2021</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#products">Cheat</a></li>
+                    <li><a href="https://discord.gg/FqCMpuFjqP">Discord</a></li>
+                </ul>
+            </div>
+            <div class="footer-products">
+                <h4>Nos produits</h4>
+                <ul>
+                    <li><a href="#">Samourai Gen <span class="new-label">Nouveau</span></a></li>
+                    <li><a href="checkout.html?product=keyser">Keyser</a></li>
+                    <li><a href="checkout.html?product=redengine">Red Engine</a></li>
+                    <li><a href="checkout.html?product=redphaze">Red+Phaze</a></li>
+                    <li><a href="checkout.html?product=susano">Susano</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Suivez-nous</h4>
+                <div class="social-icons">
+                    <a href="https://discord.gg/FqCMpuFjqP"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Samourai Shop. Tous droits réservés.</p>
+            <p class="disclaimer">Nos produits sont destinés à un usage récréatif, nous ne sommes pas responsables de votre utilisation.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Conditions générales</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            disable: 'mobile'
+        });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Force le curseur à disparaître
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+        
+        // Récupérer le curseur
+        const cursor = document.getElementById('simple-cursor');
+        
+        // Fonction ultra-simple pour suivre le curseur
+        function moveCursor(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        }
+        
+        // Ajout de plusieurs écouteurs
+        document.addEventListener('mousemove', moveCursor);
+        document.addEventListener('mouseenter', moveCursor);
+        document.addEventListener('mouseover', moveCursor);
+        
+        // S'assurer qu'il est toujours visible
+        setInterval(() => {
+            document.documentElement.style.cursor = 'none';
+            document.body.style.cursor = 'none';
+            cursor.style.display = 'block';
+            cursor.style.opacity = '1';
+        }, 500);
+        
+        // Rendre le curseur visible au clic
+        document.addEventListener('click', function(e) {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursor.style.backgroundColor = 'orange';
+            
+            setTimeout(() => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'red';
+            }, 200);
+        });
+        
+        // Animation de l'effet Matrix
+        const matrixEffect = document.querySelector('.matrix-effect');
+        if (matrixEffect) {
+            createMatrixEffect();
+        }
+        
+        function createMatrixEffect() {
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            matrixEffect.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%"\'#&_(),.;:?!\\|{}<>[]^~';
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+            
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#ff0000';
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 35);
+        }
+        
+        // Animation des boutons cyberpunk
+        const cyberpunkBtns = document.querySelectorAll('.cyberpunk-btn');
+        cyberpunkBtns.forEach(btn => {
+            btn.addEventListener('mouseover', function() {
+                this.classList.add('btn-glitch');
+                setTimeout(() => {
+                    this.classList.remove('btn-glitch');
+                }, 300);
+            });
+        });
+        
+        // Animation des cartes produits
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const hoverEffect = this.querySelector('.card-hover-effect');
+                if (hoverEffect) {
+                    hoverEffect.style.opacity = '1';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const hoverEffect = this.querySelector('.card-hover-effect');
+                if (hoverEffect) {
+                    hoverEffect.style.opacity = '0';
+                }
+            });
+        });
+        
+        // Animation de l'effet de countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        function updateCountdown() {
+            const now = new Date();
+            const hours = 23 - now.getHours();
+            const minutes = 59 - now.getMinutes();
+            const seconds = 59 - now.getSeconds();
+            
+            document.querySelector('.countdown-item:nth-child(1) .number').textContent = hours;
+            document.querySelector('.countdown-item:nth-child(2) .number').textContent = minutes;
+            document.querySelector('.countdown-item:nth-child(3) .number').textContent = seconds;
+        }
+    });
+    </script>
+</body>
+</html> 
